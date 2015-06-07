@@ -4,6 +4,8 @@
  * Date: 15/6/6
  * Time: 上午11:43
  */
+set_time_limit(0);//永不过期
+
 include_once('../libs/simple_html_dom.php');
 include_once('../libs/ez_sql_core.php');
 include_once('../libs/ez_sql_mysql.php');
@@ -16,18 +18,16 @@ $db = new ezSQL_mysql($_CONFIG['db']['db_user'], $_CONFIG['db']['db_password'], 
 
 $movie_id = $db->get_var('select max(out_id) as out_id from video');//影片编号
 $movie_id = intval($movie_id) == 0 ? 1000 : $movie_id;
-$fetch_rows = 1;
+$fetch_rows = 1000;
 
 $html = new simple_html_dom();
-//TODO test
-$movie_id = 5265;
 do {
     $url = "http://www.gtb8.com/view/index$movie_id.html";
     $content = curl_get($url);
     $content = iconv("GBK","UTF-8//IGNORE",$content);
     $html->load($content);
     if ($html) {
-        //TODO 存在
+        // 存在
         $jq = $html->find("div#jq", 0);
         $info = $jq->find('div.infobox .info', 0);
         $title = trim($info->children(0)->plaintext);
@@ -44,7 +44,7 @@ do {
             $video_list = str_replace("'", '"', $video_list);
             $video_list = json_decode($video_list, true);
             foreach ($video_list as $video) {
-                //TODO 插入数据库
+                // 插入数据库
                 //类型 qvod xfplay
                 $type = strtolower($video[0]);
                 $v_data['title'] = $title;
@@ -69,7 +69,7 @@ do {
         }
         // var VideoListJson=[['xfplay',['\u7B2C1\u96C6$xfplay://dna=meEbAGIfmdjbAGbgmxfcDZx5AdyeBefbAHD5mwa2meHWAwEeAxD0At|dx=107518546|mz=7405_onekeybatch.mp4|zx=nhE0pdOVl3P5AF5uLKP5rv5wo206BGa4mc94MzXPozS|zx=nhE0pdOVl3Ewpc5xqzD4AF5wo206BGa4mc94MzXPozS$xfplay']]],urlinfo='http://'+document.domain+'/video/?4959-<from>-<pos>.html';
     } else {
-        //TODO not found
+        // not found
         GLogger::e('视频地址不存在', $url);
     }
     $movie_id++;
@@ -82,7 +82,7 @@ function get_cat_id($category)
     global $db;
     $cat = $db->get_row("select * from category where `name`='$category'");
     if (!$cat) {
-        //TODO 插入
+        // 插入
         $cat_data['name'] = $category;
         $cat_data['type'] = 1;
         $cat_data['join_time'] = millisecond();
