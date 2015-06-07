@@ -10,6 +10,7 @@ $_CONFIG = array(
         'db_password' => 'papa@403',
         'db_name' => 'papa',
         'db_host' => '104.236.239.73',
+        'encoding'=>'utf8'
     ),
     'log'=>array(
         'path'=>'D:/wamp/www/papa/logs/'

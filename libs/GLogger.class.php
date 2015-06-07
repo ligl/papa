@@ -90,7 +90,6 @@ class GLogger
         if ($priority == GLogger::OFF) {
             return;
         }
-echo $path;
         //解析args
         $params = array();
         foreach ($args as $key => $value) {

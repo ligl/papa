@@ -37,7 +37,7 @@
 		var $dbpassword = false;
 		var $dbname = false;
 		var $dbhost = false;
-		var $encoding = false;
+		var $encoding = 'utf8';
 		var $rows_affected = false;
 
 		/**********************************************************************
