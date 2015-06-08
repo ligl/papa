@@ -4,27 +4,35 @@
  * Date: 15/6/6
  * Time: 上午11:43
  */
-include_once("../libs/simple_html_dom.php");
-include_once("../libs/ez_sql_core.php");
-include_once("../libs/ez_sql_mysql.php");
-include_once("../libs/utils.php");
-include_once("../config.php");
-$db = new ezSQL_mysql($_CONFIG['db']['db_user'], $_CONFIG['db']['db_password'], $_CONFIG['db']['db_name'], $_CONFIG['db']['db_host']);
-//$db_data["title"]="esacpe test --;"";
-//$db->query("INSERT INTO assets SET ".$db->get_set($db_data));
-//$rlt = $db->get_results("select * from assets");
-//$db->debug();
+//定义全局入口点
+define('IN_PAPA',true);
 
-//$url = "http://www.gtb8.com/";
-//$html = file_get_html($url);
-//foreach($html->find("img") as $element)
-//    echo $element->src . "<br>cd";
+include_once('../libs/simple_html_dom.php');
+include_once('../libs/ez_sql_core.php');
+include_once('../libs/ez_sql_mysql.php');
+include_once('../libs/utils.php');
+include_once('../config.php');
+include_once('../libs/GLogger.class.php');
+header("Content-type: text/html; charset=utf-8");
+
 //TODO 爬视频
-
+$m = trim($_GET['m']);
+switch($m){
+    case 'video':
+        //
+        require_once('video.php');
+        break;
+    case 'story':
+        //
+        require_once('story.php');
+        break;
+    case 'picture':
+        //
+        require_once('picture.php');
+        break;
+    default:
+        die('access invalid');
+        break;
+}
 //TODO 爬文章
 //TODO 爬图片
-$db->flush();
-$cat_data['name']='aa李广亮';
-$cat_data['type']=1;
-$cat_data['join_time']=millisecond();
-$rlt = $db->query("INSERT INTO category SET ".$db->get_set($cat_data));

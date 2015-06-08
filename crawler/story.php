@@ -4,15 +4,12 @@
  * Date: 15/6/6
  * Time: 上午11:43
  */
-set_time_limit(0);//永不过期
+if (!defined('IN_PAPA'))
+{
+    die('Hacking attempt');
+}
 
-include_once('../libs/simple_html_dom.php');
-include_once('../libs/ez_sql_core.php');
-include_once('../libs/ez_sql_mysql.php');
-include_once('../libs/utils.php');
-include_once('../config.php');
-include_once('../libs/GLogger.class.php');
-header("Content-type: text/html; charset=utf-8");
+set_time_limit(0);//永不过期
 //error_reporting(0);
 $db = new ezSQL_mysql($_CONFIG['db']['db_user'], $_CONFIG['db']['db_password'], $_CONFIG['db']['db_name'], $_CONFIG['db']['db_host'], $_CONFIG['db']['encoding']);
 
