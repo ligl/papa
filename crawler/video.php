@@ -26,12 +26,12 @@ while ($movie_id++ > 0 && --$fetch_rows > 0) {
         // 存在
         $jq = $html->find("div#jq", 0);
         if (!$jq) {
-            GLogger::e('【视频】网页解析失败', $url);
+            GLogger::e('[视频]网页解析失败', $url);
             continue;
         }
         $info = $jq->find('div.infobox .info', 0);
         if (!$info) {
-            GLogger::e('【视频】网页解析失败', $url);
+            GLogger::e('[视频]网页解析失败', $url);
             continue;
         }
         $title = trim($info->children(0)->plaintext);
@@ -70,18 +70,18 @@ while ($movie_id++ > 0 && --$fetch_rows > 0) {
                         $v_data['join_time'] = millisecond();
                         $rlt = $db->query("INSERT INTO video SET " . $db->get_set($v_data));
                         if (!$rlt) {
-                            GLogger::e('【视频】插入视频失败', $v_data);
+                            GLogger::e('[视频]插入视频失败', $v_data);
                         }
                     }
                 }
             }
         } else {
-            GLogger::e('【视频】没有视频源', $url);
+            GLogger::e('[视频]没有视频源', $url);
         }
         // var VideoListJson=[['xfplay',['\u7B2C1\u96C6$xfplay://dna=meEbAGIfmdjbAGbgmxfcDZx5AdyeBefbAHD5mwa2meHWAwEeAxD0At|dx=107518546|mz=7405_onekeybatch.mp4|zx=nhE0pdOVl3P5AF5uLKP5rv5wo206BGa4mc94MzXPozS|zx=nhE0pdOVl3Ewpc5xqzD4AF5wo206BGa4mc94MzXPozS$xfplay']]],urlinfo='http://'+document.domain+'/video/?4959-<from>-<pos>.html';
     } else {
         // not found
-        GLogger::e('【视频】地址不存在', $url);
+        GLogger::e('[视频]地址不存在', $url);
     }
     //隔一秒一循环
     sleep(1);
