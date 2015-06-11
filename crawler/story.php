@@ -17,6 +17,7 @@ $movie_id = $db->get_var('select max(out_id) as out_id from video');//影片编�
 $movie_id = intval($movie_id) == 0 ? 1111 : $movie_id;
 $fetch_rows = 2000;
 $html = new simple_html_dom();
+$story_dom = new simple_html_dom();
 $cat_page=array('23'=>25,'24'=>17,'25'=>31,'26'=>19,'27'=>18,'28'=>17,'29'=>17,'30'=>17);
 foreach($cat_page as $cid=>$p){
     $page=$p+1;
@@ -34,6 +35,7 @@ foreach($cat_page as $cid=>$p){
             continue;
         }
         $listt = $html->find("table.listt");
+
         foreach($listt as $item){
             $story = $item->find('a',0);
             //http://www.gtb8.$itemcom
@@ -45,12 +47,12 @@ foreach($cat_page as $cid=>$p){
             $url="http://www.gtb8.com".$story->href;
             $content = curl_get($url);
             $content = iconv("GBK", "UTF-8//IGNORE", $content);
-            $html->load($content);
-            if (!is_object($html)) {
+            $story_dom->load($content);
+            if (!is_object($story_dom)) {
                 sleep(1);
                 continue;
             }
-            $content = $html->find("div#ks_xp .n_bd",0);
+            $content = $story_dom->find("div#ks_xp .n_bd",0);
             if (!is_object($content)) {
                 sleep(1);
                 continue;
