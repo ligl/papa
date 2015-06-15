@@ -19,6 +19,7 @@ $fetch_rows = 2000;
 $html = new simple_html_dom();
 $story_dom = new simple_html_dom();
 $cat_page=array('23'=>25,'24'=>17,'25'=>31,'26'=>19,'27'=>18,'28'=>17,'29'=>17,'30'=>17);
+$cat_page=array('30'=>17);
 foreach($cat_page as $cid=>$p){
     $page=$p+1;
     while($page--){
