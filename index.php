@@ -21,7 +21,14 @@ $db->exec("SET NAMES 'utf8'");
 $app = new \Slim\Slim(array(
     'templates.path' => './app/tpl'
 ));
+//page & view route
 $app->get('/', function () use ($app){
     $app->render('index.htm',array('name'=>'amose'));
 });
+
+//api route
+$app->group('/api',function() use($app){
+
+});
+
 $app->run();
