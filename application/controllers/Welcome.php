@@ -1,8 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
-
+class Welcome extends MY_Controller {
+    public function __construct()
+    {
+        parent::__construct();
+    }
 	/**
 	 * Index Page for this controller.
 	 *
@@ -20,6 +23,18 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+        $this->load->database();
+        $rlt = $this->db->query("select * from story limit 5");
+        var_dump($rlt);
+		//$this->load->view('welcome_message');
 	}
+
+    public function test(){
+        $data["title"]="标题";
+        $data["num"]="123123";
+
+        $this->assign('data',$data);
+
+        $this->display("test.html");
+    }
 }
