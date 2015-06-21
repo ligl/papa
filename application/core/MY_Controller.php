@@ -21,7 +21,7 @@ class MY_Controller extends CI_Controller
     public function display($html = null)
     {
         if ($html == null) {
-            $html = strtolower($this->router->class . DIRECTORY_SEPARATOR . $this->router->method . '.html');
+            $html = strtolower($this->router->fetch_class() . DIRECTORY_SEPARATOR . $this->router->fetch_method() . '.html');
         }
         $this->ci_smarty->display($html);
     }

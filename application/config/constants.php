@@ -84,3 +84,8 @@ define('EXIT_USER_INPUT', 7); // invalid user input
 define('EXIT_DATABASE', 8); // database error
 define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
+
+//哪种类型资源（0：未知，1：视频，2：小说，3：图片）
+define('TORRENT_TYPE_VIDEO', 1);
+define('TORRENT_TYPE_STORY', 2);
+define('TORRENT_TYPE_PICTURE', 3);

@@ -7,44 +7,81 @@
     <link href="http://cdn.bootcss.com/meyer-reset/2.0/reset.min.css" rel="stylesheet">
     <link href="http://cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="http://cdn.bootcss.com/Swiper/3.0.8/css/swiper.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/animate.css/3.3.0/animate.min.css" rel="stylesheet">
     <link href="{$base_url}/res/css/papa.css" rel="stylesheet">
     <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
     <script src="http://cdn.bootcss.com/Swiper/3.0.8/js/swiper.min.js"></script>
-    <style>
-
-    </style>
+    <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
 </head>
 <body>
-<header class="header">
-    <img src="" class="logo"/><span class="slogon">PaPa - 看广告得种子</span>
-</header>
-<div class="countdown">
-    <i class="clock fa fa-clock-o"></i>
+<div class="page">
+    <header class="header">
+        <img src="" class="logo"/><span class="slogon">PaPa - 看广告得种子</span>
+    </header>
 
-    <p class="time">30</p>
-</div>
+    <div class="countdown">
+        <i class="clock fa fa-clock-o"></i>
 
-<div class="swiper-container">
-    <div class="swiper-wrapper">
-        <div class="swiper-slide">Slide 1</div>
-        <div class="swiper-slide">Slide 2</div>
-        <div class="swiper-slide">Slide 3</div>
-        <div class="swiper-slide">Slide 4</div>
-        <div class="swiper-slide">Slide 5</div>
-        <div class="swiper-slide">Slide 6</div>
-        <div class="swiper-slide">Slide 7</div>
-        <div class="swiper-slide">Slide 8</div>
-        <div class="swiper-slide">Slide 9</div>
-        <div class="swiper-slide">Slide 10</div>
+        <p class="time"></p>
     </div>
-    <!-- Add Pagination -->
-    <div class="swiper-pagination"></div>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            {foreach $ads as $ad }
+            <a class="swiper-slide">{$ad.title}</a>
+            {/foreach}
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
+    <div class="torrent-container"></div>
 </div>
 <script>
+    var apiBaseUrl = '{$base_url}/api/';
     var swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
         paginationClickable: true
     });
+    $(function () {
+        var seconds = 1;//s
+        var countdownObj = setInterval(function () {
+            $('.countdown .time').html(seconds);
+            if (seconds-- == 0) {
+                clearInterval(countdownObj);
+                getTorrent();
+            }
+        }, 1000);
+
+        function getTorrent() {
+            $.ajax({
+                url: apiBaseUrl + 'get_torrent',
+                dataType: 'json',
+                error: function () {
+                    alert("error occured!!!");
+                },
+                success: function (data) {
+                    console.log(data);
+                    if (data.code == 0) {
+                        var torrent = data.torrent;
+                        var turl = $('#tpl-turl').tmpl(torrent);
+                        turl.addClass('animated bounceInDown').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                            $(this).removeClass('animated bounceInDown')
+                        });
+                        $('.torrent-container').html(turl);
+                        $('.swiper-container,.countdown').hide();
+                    } else {
+                        alert('种子获取失败，请重试');
+                    }
+                }
+            });
+        }
+    });
 </script>
+{literal}
+<script type="text/template" id="tpl-turl">
+    <div>
+        <a href="${url}">${url}</a>
+    </div>
+</script>
+{/literal}
 </body>
 </html>
