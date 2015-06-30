@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+.story-content {
+  padding: $pagePadding;
+  word-break: break-all;
+  overflow: hidden;
+  color: #333333;
+  line-height: 1.2rem;
+}

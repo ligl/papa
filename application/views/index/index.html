@@ -1,27 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>PaPa - 看广告得种子</title>
-    <meta charset="utf-8"/>
-    <meta content="user-scalable=no,width=device-width, initial-scale=1" name="viewport">
-    <link href="http://cdn.bootcss.com/meyer-reset/2.0/reset.min.css" rel="stylesheet">
-    <link href="http://cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="http://cdn.bootcss.com/Swiper/3.0.8/css/swiper.min.css" rel="stylesheet">
-    <link href="//cdn.bootcss.com/animate.css/3.3.0/animate.min.css" rel="stylesheet">
-    <link href="{$base_url}/res/css/papa.css" rel="stylesheet">
-    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
-    <script src="http://cdn.bootcss.com/Swiper/3.0.8/js/swiper.min.js"></script>
-    <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+    {include file='public/header.html'}
 </head>
 <body>
+<!--http://tool.c7sky.com/webcolor/-->
 <div class="page">
     <header class="header">
-        <img src="" class="logo"/><span class="slogon">PaPa - 看广告得种子</span>
+        <img src="{$base_url}/res/img/logo.png" class="logo"/><span class="slogon">PaPa - 看广告得种子</span>
     </header>
 
     <div class="countdown">
-        <i class="clock fa fa-clock-o"></i>
-
         <p class="time"></p>
     </div>
     <div class="swiper-container">
@@ -39,10 +28,12 @@
     var apiBaseUrl = '{$base_url}/api/';
     var swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
+        loop: true,
+        autoplay: 3000,
         paginationClickable: true
     });
     $(function () {
-        var seconds = 1;//s
+        var seconds = 15;//s
         var countdownObj = setInterval(function () {
             $('.countdown .time').html(seconds);
             if (seconds-- == 0) {
@@ -66,7 +57,7 @@
                         turl.addClass('animated bounceInDown').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
                             $(this).removeClass('animated bounceInDown')
                         });
-                        $('.torrent-container').html(turl);
+                        $('.torrent-container').html(turl).show();
                         $('.swiper-container,.countdown').hide();
                     } else {
                         alert('种子获取失败，请重试');
