@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
+    {include file='public/header.html'}
 </head>
 <body>
+<div class="video-content" style="display: none">
+    {$video.content}
+</div>
+<script>
+    $(function () {
+        $('.video-content').find('font').removeAttr('color').removeAttr('style').removeAttr('size');
+        $('.video-content').show();
+    });
+</script>
 
+{include file='public/footer.html'}
 </body>
 </html>

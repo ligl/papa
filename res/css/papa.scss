@@ -11,8 +11,14 @@ html, body {
 }
 
 a, a:hover, a:link, a:active {
-  text-decoration: underline;
+  text-decoration: none;
   color: #333333;
+}
+
+.page {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 .header {
@@ -23,6 +29,10 @@ a, a:hover, a:link, a:active {
   border-bottom: solid 3px $primaryColor;
   border-top: solid 1px #996600;
   color: #fff;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999999;
 }
 
 .header > .logo {
@@ -59,14 +69,15 @@ a, a:hover, a:link, a:active {
 }
 
 .swiper-container {
+  margin-top: $headerHeight;
   width: 100%;
-  height: 360px;
-  background: #444444;
+  height: 100%;
 }
 
 .swiper-slide {
   text-align: center;
   font-size: 18px;
+  background: #fff;
   /* Center slide text vertically */
   display: -webkit-box;
   display: -ms-flexbox;
@@ -80,29 +91,23 @@ a, a:hover, a:link, a:active {
   -ms-flex-align: center;
   -webkit-align-items: center;
   align-items: center;
+  height: 100%;
+  -webkit-user-select: none;
+  -webkit-text-size-adjust: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .swiper-slide img {
   width: 100%;
 }
 
-.swiper-pagination .swiper-pagination-bullet {
-  width: 6px;
-  height: 6px;
-  border-radius: 4px !important;
-  border: solid 1px #ffffff;
-  background: transparent;
-}
-
-.swiper-pagination .swiper-pagination-bullet-active {
-  background: $primaryColor;
-  border: solid 1px $primaryColor;
-}
-
 .torrent-container {
-  background: #FF6600;
-  padding: $pagePadding;
+  padding: 20px;
   display: none;
+  position: fixed;
+  bottom: 40px;
+  width: 100%;
+  text-align: center;
 }
 
 .torrent-container > div {
@@ -127,6 +132,32 @@ a, a:hover, a:link, a:active {
   word-break: break-all;
   padding: 10px;
   text-align: center;
+  text-decoration: underline;
+}
+
+.countdown-btn {
+  display: block;
+  text-decoration: none;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  background: $primaryColor;
+  color: #ffffff;
+  border-radius: 50%;
+  overflow: hidden;
+  position: fixed;
+  bottom: 2px;
+  left: 50%;
+  margin-left: -20px;
+  text-align: center;
+  z-index: 999999;
+  font-size: 1.2rem;
+  -webkit-touch-callout: none; /* 禁用长触弹出的下载图片菜单 */
+  -webkit-user-select: none; /* 禁用长触选择文字等功能 */
+}
+
+.infinite-animate {
+  -vendor-animation-iteration-count: infinite !important;
 }
 
 @import "story.scss";
