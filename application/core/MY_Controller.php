@@ -25,5 +25,8 @@ class MY_Controller extends CI_Controller
         }
         $this->ci_smarty->display($html);
     }
-
+    function millisecond()
+    {
+        return ceil(microtime(true) * 1000);
+    }
 }

@@ -3,7 +3,6 @@
 <head>
     {include file='public/header.html'}
     <!--<meta name="browsermode" content="application"/>-->
-    <script src="//cdn.bootcss.com/hammer.js/2.0.4/hammer.min.js"></script>
 </head>
 <body>
 <!--http://tool.c7sky.com/webcolor/-->
@@ -12,10 +11,10 @@
         <img src="{$base_url}/res/img/logo.png" class="logo"/><span class="slogon">PaPa - 看广告得种子</span>
     </header>
 
-    <div class="swiper-container">
+    <div class="swiper-container main-banner">
         <div class="swiper-wrapper">
             {foreach $ads as $ad }
-            <a class="swiper-slide">{$ad.title}</a>
+            <a class="swiper-slide" href="{$ad.url}" alt="{$ad.title}"><img src="{$ad.pic}"/></a>
             {/foreach}
         </div>
     </div>
@@ -35,7 +34,7 @@
                 opt.tick = null;
             }
             if (!opt.seconds) {
-                opt.seconds = 2;
+                opt.seconds = 10;
             }
             return opt;
         })(opt);
@@ -101,7 +100,6 @@
             });
         }
 
-        var mc = new Hammer($('.countdown-btn').get(0));
         var countdown = new CountDown({
             tick: function (cd, seconds) {
                 console.log(cd, seconds);

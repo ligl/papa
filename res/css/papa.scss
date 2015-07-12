@@ -46,7 +46,7 @@ a, a:hover, a:link, a:active {
 }
 
 .countdown {
-  position: absolute;
+  position: fixed;
   top: 6+$headerHeight;
   right: 0;
   display: -webkit-box;
@@ -68,10 +68,38 @@ a, a:hover, a:link, a:active {
   font-size: 1.2rem;
 }
 
+.main-banner{
+
+}
+
 .swiper-container {
-  margin-top: $headerHeight;
   width: 100%;
-  height: 100%;
+  display: -webkit-box;
+  -webkit-box-flex: 1;
+  background: #000000;
+  position: fixed;
+  top:$headerHeight;
+  bottom:0;
+  left:0;
+}
+
+a.next-btn{
+  display: block;
+  text-decoration: none;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  background: $primaryColor;
+  color: #ffffff;
+  border-radius: 50%;
+  overflow: hidden;
+  position: fixed;
+  bottom: 2px;
+  left: 50%;
+  margin-left: -20px;
+  text-align: center;
+  z-index: 999999;
+  font-size: 1.2rem;
 }
 
 .swiper-slide {
@@ -152,8 +180,6 @@ a, a:hover, a:link, a:active {
   text-align: center;
   z-index: 999999;
   font-size: 1.2rem;
-  -webkit-touch-callout: none; /* 禁用长触弹出的下载图片菜单 */
-  -webkit-user-select: none; /* 禁用长触选择文字等功能 */
 }
 
 .infinite-animate {
@@ -161,3 +187,4 @@ a, a:hover, a:link, a:active {
 }
 
 @import "story.scss";
+@import "video.scss";

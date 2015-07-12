@@ -32,7 +32,7 @@ a, a:hover, a:link, a:active {
   vertical-align: middle; }
 
 .countdown {
-  position: absolute;
+  position: fixed;
   top: 54px;
   right: 0;
   display: -webkit-box;
@@ -53,9 +53,32 @@ a, a:hover, a:link, a:active {
   font-size: 1.2rem; }
 
 .swiper-container {
-  margin-top: 48px;
   width: 100%;
-  height: 100%; }
+  display: -webkit-box;
+  -webkit-box-flex: 1;
+  background: #000000;
+  position: fixed;
+  top: 48px;
+  bottom: 0;
+  left: 0; }
+
+a.next-btn {
+  display: block;
+  text-decoration: none;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  background: #CC0033;
+  color: #ffffff;
+  border-radius: 50%;
+  overflow: hidden;
+  position: fixed;
+  bottom: 2px;
+  left: 50%;
+  margin-left: -20px;
+  text-align: center;
+  z-index: 999999;
+  font-size: 1.2rem; }
 
 .swiper-slide {
   text-align: center;
@@ -129,11 +152,7 @@ a, a:hover, a:link, a:active {
   margin-left: -20px;
   text-align: center;
   z-index: 999999;
-  font-size: 1.2rem;
-  -webkit-touch-callout: none;
-  /* 禁用长触弹出的下载图片菜单 */
-  -webkit-user-select: none;
-  /* 禁用长触选择文字等功能 */ }
+  font-size: 1.2rem; }
 
 .infinite-animate {
   -vendor-animation-iteration-count: infinite !important; }
@@ -143,6 +162,15 @@ a, a:hover, a:link, a:active {
   word-break: break-all;
   overflow: hidden;
   color: #333333;
+  line-height: 1.2rem; }
+
+.story-content * {
+  line-height: 1.2rem; }
+
+.video-url {
+  line-height: 1.2rem; }
+
+.video-tips {
   line-height: 1.2rem; }
 
 /*# sourceMappingURL=papa.css.map */
