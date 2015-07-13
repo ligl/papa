@@ -1,4 +1,8 @@
 .*
 application/cache/*
+!application/cache/readme.md
 application/logs/*
+!application/logs/readme.md
 application/templates_c/*
+!application/templates_c/readme.md
+!.gitignore
