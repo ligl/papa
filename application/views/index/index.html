@@ -101,7 +101,7 @@
             tick: function (cd, seconds) {
                 console.log(cd, seconds);
                 $('.countdown-btn').html(seconds);
-                if (seconds % 3 == 0) {
+                if (seconds % 5 == 0) {
                     swiper.slideNext();
                 }
                 if (seconds == 0) {
