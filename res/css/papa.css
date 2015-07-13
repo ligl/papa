@@ -99,6 +99,9 @@ a.next-btn {
   -webkit-tap-highlight-color: transparent; }
 
 .swiper-slide img {
+  max-width: 100% !important; }
+
+.swiper-slide img.full {
   width: 100%; }
 
 .torrent-container {
