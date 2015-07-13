@@ -1,8 +1,46 @@
 @charset "UTF-8";
 
-.video-url{
+.video-url {
   line-height: 1.2rem;
+  padding: $pagePadding;
 }
-.video-tips{
+
+.video-url {
+  .play-label {
+    border-left: solid 3px #CC0033;
+    padding-left: 3px;
+  }
+  a.play-url {
+    display: block;
+    word-break: break-all;
+    text-decoration: underline;
+    line-height: 1.2rem;
+  }
+}
+
+.video-tips {
   line-height: 1.2rem;
+  padding: $pagePadding;
+}
+
+.video-tips {
+  .suggest {
+    margin-bottom: 20px;
+    font-size: 0.8rem;
+    color: #999999;
+  }
+  .qa-title {
+    margin-bottom: 5px;
+  }
+  .q {
+    line-height: 1.8rem;
+  }
+  .a {
+    margin-bottom: 5px;
+  }
+  .q > label, .a > label {
+    color: $primaryColor;
+    font-weight: bold;
+    padding-right: 2px;
+  }
 }

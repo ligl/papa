@@ -20,11 +20,7 @@ a, a:hover, a:link, a:active {
   line-height: 48px;
   border-bottom: solid 3px #CC0033;
   border-top: solid 1px #996600;
-  color: #fff;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 999999; }
+  color: #fff; }
 
 .header > .logo {
   height: 32px;
@@ -106,7 +102,6 @@ a.next-btn {
   width: 100%; }
 
 .torrent-container {
-  padding: 20px;
   display: none;
   position: fixed;
   bottom: 40px;
@@ -126,13 +121,15 @@ a.next-btn {
   -webkit-box-align: center;
   -ms-flex-align: center;
   -webkit-align-items: center;
-  align-items: center; }
+  align-items: center;
+  padding: 8px; }
 
 .torrent-container a {
   font-weight: bold;
   font-size: 1.3rem;
   word-break: break-all;
   padding: 10px;
+  line-height: 1.5rem;
   text-align: center;
   text-decoration: underline; }
 
@@ -168,9 +165,35 @@ a.next-btn {
   line-height: 1.2rem; }
 
 .video-url {
+  line-height: 1.2rem;
+  padding: 8px; }
+
+.video-url .play-label {
+  border-left: solid 3px #CC0033;
+  padding-left: 3px; }
+.video-url a.play-url {
+  display: block;
+  word-break: break-all;
+  text-decoration: underline;
   line-height: 1.2rem; }
 
 .video-tips {
-  line-height: 1.2rem; }
+  line-height: 1.2rem;
+  padding: 8px; }
+
+.video-tips .suggest {
+  margin-bottom: 20px;
+  font-size: 0.8rem;
+  color: #999999; }
+.video-tips .qa-title {
+  margin-bottom: 5px; }
+.video-tips .q {
+  line-height: 1.8rem; }
+.video-tips .a {
+  margin-bottom: 5px; }
+.video-tips .q > label, .video-tips .a > label {
+  color: #CC0033;
+  font-weight: bold;
+  padding-right: 2px; }
 
 /*# sourceMappingURL=papa.css.map */

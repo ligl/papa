@@ -4,17 +4,27 @@
     {include file='public/header.html'}
 </head>
 <body>
+{include file='public/actionbar.html'}
 <div class="video-url">
-    <h3>播放链接</h3>
-    <a href="{$video.url}">{$video.url}</a>
+    <h3 class="play-label">播放链接</h3>
+    <a class="play-url" href="{$video.url}">{$video.url}</a>
 </div>
+
 <div class="video-tips">
-    建议：如果播放链接无法使用，请尝试复制至对应播放器打开
-    常见问题
-    Q如果无法播放怎么办？
-    A请首先检查手机是否安装有对应的第三方视频播放器，播放链接中：“xfplay://”开头，请安装先锋影音播放器；“jjhd://”开头，请安装吉吉影音播放器；“qvod://”开头，请安装快播播放器。
-    Q如果已确认安装有对应播放器，如何播放？
-    A以先锋影音播放器为例：长按“复制”本页“播放链接”内容，尝试切换至“先锋影音app”，进入“菜单”，点击“打开网址”长按输入框“粘贴”本页播放链接前往播放，可能加载会比较慢，请耐心等待。
+    <p class="suggest">如果播放链接无法使用，请尝试复制至对应播放器打开</p>
+
+    <p class="qa-title">常见问题</p>
+
+    <p class="q"><label>Q</label>如果无法播放怎么办？</p>
+
+    <p class="a">
+        <label>A</label>请首先检查手机是否安装有对应的第三方视频播放器，播放链接中：“xfplay://”开头，请安装先锋影音播放器；“jjhd://”开头，请安装吉吉影音播放器；“qvod://”开头，请安装快播播放器。
+    </p>
+
+    <p class="q"><label>Q</label>如果已确认安装有对应播放器，如何播放？</p>
+
+    <p class="a"><label>A</label>以先锋影音播放器为例：长按“复制”本页“播放链接”内容，尝试切换至“先锋影音app”，进入“菜单”，点击“打开网址”长按输入框“粘贴”本页播放链接前往播放，可能加载会比较慢，请耐心等待。
+    </p>
 </div>
 <a href="/" class="next-btn">换</a>
 <script>
