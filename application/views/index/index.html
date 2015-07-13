@@ -11,7 +11,7 @@
     <div class="swiper-container main-banner">
         <div class="swiper-wrapper">
             {foreach $ads as $ad }
-            <a class="swiper-slide" href="{$ad.url}" alt="{$ad.title}"><img src="{$ad.pic}"/></a>
+            <div class="swiper-slide">{$ad.content}</div>
             {/foreach}
         </div>
     </div>
