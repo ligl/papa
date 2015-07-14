@@ -1,13 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Api extends CI_Controller
+class Api extends ApiBase
 {
     public function __construct()
     {
         parent::__construct();
-        $this->load->helper('url');
-        $this->load->database();
     }
 
     public function index()
