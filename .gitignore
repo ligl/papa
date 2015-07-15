@@ -6,3 +6,4 @@ application/logs/*
 application/templates_c/*
 !application/templates_c/readme.md
 !.gitignore
+index.php

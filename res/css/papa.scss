@@ -65,20 +65,19 @@ a, a:hover, a:link, a:active {
 }
 
 .main-banner {
-
+height: 290px;
 }
 
 .swiper-container {
   width: 100%;
   display: -webkit-box;
   -webkit-box-flex: 1;
-  background: #000000;
-  position: fixed;
-  top: $headerHeight;
-  bottom: 0;
-  left: 0;
 }
-
+.swiper-container{
+  .swiper-pagination{
+    text-align: right;
+  }
+}
 a.next-btn {
   display: block;
   text-decoration: none;
@@ -99,9 +98,7 @@ a.next-btn {
 }
 
 .swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  background: #fff;
+  background: #f5f5f5;
   /* Center slide text vertically */
   display: -webkit-box;
   display: -ms-flexbox;

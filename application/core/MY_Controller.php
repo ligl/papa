@@ -20,9 +20,6 @@ class MY_Controller extends CI_Controller
     {
         if ($html == null) {
             $html = strtolower($this->router->fetch_class() . DIRECTORY_SEPARATOR . $this->router->fetch_method() . '.html');
-            if($this->module=='admin'){
-
-            }
         }
         $this->ci_smarty->display($html);
     }

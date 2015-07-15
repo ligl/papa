@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {include file='public/header.html'}
+    <!--<meta name="browsermode" content="application"/>-->
+</head>
+<body>
+<!--http://tool.c7sky.com/webcolor/-->
+<div class="page">
+    {include file='public/actionbar.html'}
+    <div class="swiper-container main-banner">
+        <div class="swiper-wrapper">
+            {foreach $ads as $ad }
+            <div class="swiper-slide">{$ad.content}</div>
+            {/foreach}
+        </div>
+    </div>
+    <div class="torrent-container"></div>
+    <div class="countdown-btn infinite-animate">GO</div>
+</div>
+<script>
+    var apiBaseUrl = '{$base_url}/api/';
+    var swiper = new Swiper('.swiper-container', {
+        loop: true,
+        direction: 'vertical'
+    });
+    function CountDown(opt) {
+        var opt = (function (opt) {
+            opt = opt || {};
+            if (!opt.tick) {
+                opt.tick = null;
+            }
+            if (!opt.seconds) {
+                opt.seconds = 10;
+            }
+            return opt;
+        })(opt);
+
+        var countdown = new Object;
+        countdown._time = opt.seconds;
+        countdown.seconds = opt.seconds;//s
+        countdown._obj = null;
+        countdown.tick = opt.tick;
+
+        countdown.start = function () {
+            this._clear();
+            this._obj = setInterval(this._handler, 1000);
+            return this;
+        };
+        countdown.stop = function () {
+            this._clear();
+            this.seconds = this._time;
+            return this;
+        };
+        countdown.pause = function () {
+            this._clear();
+            return this;
+        };
+        countdown._handler = (function () {
+            if (--this.seconds == 0) {
+                this.stop();
+                this.tick(this, 0);
+            } else {
+                this.tick(this, this.seconds);
+            }
+        }).bind(countdown);
+
+        countdown._clear = (function () {
+            if (this._obj != null) {
+                clearInterval(this._obj);
+            }
+            this._obj = null;
+        }).bind(countdown);
+        return countdown;
+    }
+    $(function () {
+        function getTorrent() {
+            $.ajax({
+                url: apiBaseUrl + 'get_torrent',
+                dataType: 'json',
+                error: function () {
+                    alert("error occured!!!");
+                },
+                success: function (data) {
+                    console.log(data);
+                    if (data.code == 0) {
+                        var torrent = data.torrent;
+                        var turl = $('#tpl-turl').tmpl(torrent);
+                        $('.torrent-container').html(turl).addClass('animated zoomInUp').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                            $(this).removeClass('animated zoomInUp');
+                        }).show();
+                        $('.swiper-container,.countdown-btn').hide();
+                    } else {
+                        alert('种子获取失败，请重试');
+                    }
+                }
+            });
+        }
+
+        var countdown = new CountDown({
+            tick: function (cd, seconds) {
+                console.log(cd, seconds);
+                $('.countdown-btn').html(seconds);
+                if (seconds % 5 == 0) {
+                    swiper.slideNext();
+                }
+                if (seconds == 0) {
+                    getTorrent();
+                    $('.countdown-btn').addClass('animated shake').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                        $(this).removeClass('animated shake');
+                    });
+                }
+            }
+        });
+        countdown.start();
+//        mc.on('panstart panmove', function (ev) {
+//            countdown.start();
+//            $('.countdown-btn').html(countdown.seconds);
+//        });
+//
+//        mc.on('panend pancancel', function (ev) {
+//            console.log('pressup');
+//            countdown.pause();
+//            $('.countdown-btn').html('cancel');
+//        });
+    });
+</script>
+{literal}
+<script type="text/template" id="tpl-turl">
+    <div>
+        <a href="${url}">${url}</a>
+    </div>
+</script>
+{/literal}
+{include file='public/footer.html'}
+</body>
+</html>
