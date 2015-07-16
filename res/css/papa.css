@@ -1,12 +1,17 @@
 @charset "UTF-8";
 html, body {
-  font-size: 100%;
+  font-size: 14px;
   background: #ffffff;
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif; }
 
 a, a:hover, a:link, a:active {
   text-decoration: none;
   color: #333333; }
+
+.body-bottom:after {
+  content: '';
+  display: block;
+  height: 50px; }
 
 .page {
   width: 100%;
@@ -49,7 +54,7 @@ a, a:hover, a:link, a:active {
   font-size: 1.2rem; }
 
 .main-banner {
-  height: 290px; }
+  height: 160px; }
 
 .swiper-container {
   width: 100%;
@@ -65,12 +70,12 @@ a.next-btn {
   width: 40px;
   height: 40px;
   line-height: 40px;
-  background: #CC0033;
+  background: rgba(0, 0, 0, 0.2);
   color: #ffffff;
   border-radius: 50%;
   overflow: hidden;
   position: fixed;
-  bottom: 2px;
+  bottom: 10px;
   left: 50%;
   margin-left: -20px;
   text-align: center;
@@ -156,23 +161,71 @@ a.next-btn {
 .infinite-animate {
   -vendor-animation-iteration-count: infinite !important; }
 
+/*** main res list***/
+.res-container > .res-item:first-child {
+  border-top: solid 1px #eeeeee; }
+
+.res-item {
+  border-bottom: solid 1px #eeeeee; }
+
+.res-item > a {
+  display: block;
+  padding: 8px; }
+
+.res-item .res-item-title {
+  line-height: 1.2rem; }
+.res-item .res-item-catname {
+  font-size: 0.8rem;
+  color: #999999;
+  padding-top: 3px; }
+.res-item .res-item-title > .fa-video-camera {
+  color: #666666; }
+
+/*** main res list end***/
+.story-detail-title {
+  margin: 8px;
+  line-height: 1.5rem;
+  font-size: 1.2rem;
+  text-align: center; }
+
+.story-detail-catname {
+  color: #999999;
+  font-size: 0.8rem;
+  text-align: center;
+  margin: 8px;
+  margin: 8px;
+  display: inline;
+  border-left: solid 3px #CC0033;
+  padding-left: 3px; }
+
 .story-content {
   padding: 8px;
   word-break: break-all;
   overflow: hidden;
-  color: #333333;
-  line-height: 1.2rem; }
+  color: #666666;
+  line-height: 1.5rem;
+  font-size: 1.2rem; }
 
 .story-content * {
-  line-height: 1.2rem; }
+  line-height: 1.5rem; }
 
 .video-url {
   line-height: 1.2rem;
   padding: 8px; }
 
+.video-detail-title {
+  margin: 8px;
+  line-height: 1.2rem; }
+
+.video-detail-catname {
+  color: #999999;
+  font-size: 0.8rem;
+  margin: 8px; }
+
 .video-url .play-label {
   border-left: solid 3px #CC0033;
-  padding-left: 3px; }
+  padding-left: 3px;
+  margin-bottom: 2px; }
 .video-url a.play-url {
   display: block;
   word-break: break-all;

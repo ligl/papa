@@ -4,11 +4,20 @@
   line-height: 1.2rem;
   padding: $pagePadding;
 }
-
+.video-detail-title{
+  margin:$pagePadding;
+  line-height: 1.2rem;
+}
+.video-detail-catname{
+  color:$minorColor;
+  font-size:0.8rem;
+  margin:$pagePadding;
+}
 .video-url {
   .play-label {
     border-left: solid 3px #CC0033;
     padding-left: 3px;
+    margin-bottom: 2px;
   }
   a.play-url {
     display: block;

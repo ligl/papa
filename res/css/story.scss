@@ -1,14 +1,33 @@
 @charset "UTF-8";
 
+.story-detail-title{
+  margin:$pagePadding;
+  line-height: 1.5rem;
+  font-size: 1.2rem;
+  text-align: center;
+}
+.story-detail-catname{
+  color:$minorColor;
+  font-size:0.8rem;
+  text-align: center;
+  margin:$pagePadding;
+  margin: 8px;
+  display: inline;
+  border-left: solid 3px $primaryColor;
+  padding-left: 3px;
+}
+
 .story-content {
   padding: $pagePadding;
   word-break: break-all;
   overflow: hidden;
-  color: #333333;
-  line-height: 1.2rem;
+  color: $majorColor;
+  line-height: 1.5rem;
+  font-size:1.2rem;
 }
-.story-content{
-  *{
-    line-height: 1.2rem;
+
+.story-content {
+  * {
+    line-height: 1.5rem;
   }
 }

@@ -21,24 +21,23 @@ class Index extends HomeBase
         }
         $this->assign('ads', $ads);
 
-//        //story
-//        $query=$this->db->query('select * from story where weight>=0 order by weight desc limit 20');
-//        if ($query->num_rows() > 0) {
-//            $storyList = $query->result_array();
-//        } else {
-//            //TODO no
-//        }
-//        $this->assign('storyList',$storyList);
-
+        //story
+        $query=$this->db->query('select *,2 as p_type from story where weight>=0 order by weight desc limit 20');
+        if ($query->num_rows() > 0) {
+            $storyList = $query->result_array();
+        } else {
+            //TODO no
+        }
         //video
-//        $query=$this->db->query('select * from story where weight>=0 order by weight desc limit 20');
-//        if ($query->num_rows() > 0) {
-//            $videoList = $query->result_array();
-//        } else {
-//            //TODO no
-//        }
-//        $this->assign('videoList',$videoList);
-
+        $query=$this->db->query('select *,1 as p_type from video where weight>=0 order by weight desc limit 20');
+        if ($query->num_rows() > 0) {
+            $videoList = $query->result_array();
+        } else {
+            //TODO no
+        }
+        $resList = array_merge($storyList,$videoList);
+        shuffle($resList);
+        $this->assign('resList',$resList);
         $this->display();
     }
 

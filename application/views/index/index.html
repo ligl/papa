@@ -13,22 +13,29 @@
         <div class="swiper-slide">{$ad.content}</div>
         {/foreach}
     </div>
-    <div class="swiper-pagination"></div>
+    <!--<div class="swiper-pagination"></div>-->
 </div>
-<ul>
-    {foreach $storyList as $story }
-    <li><a href="{$base_url}/api/{$story.guid}">{$story.title}</a></li>
-    {/foreach}
-</ul>
-<ul>
-    {foreach $videoList as $video }
-    <li></li>
+
+<ul class="res-container">
+    {foreach $resList as $res }
+    <li class="res-item">
+        {if $res.p_type==1}
+            <a href="{$base_url}/index/video/{$res.guid}">
+                <h3 class="res-item-title"><i class="fa fa-video-camera"></i> {$res.title}</h3>
+                <p class="res-item-catname">{$res.cat_name}</p>
+            </a>
+        {else}
+        <a href="{$base_url}/index/story/{$res.guid}">
+            <h3 class="res-item-title"><i class="fa fa-file-text-o"></i> {$res.title}</h3>
+            <p class="res-item-catname">{$res.cat_name}</p>
+        </a>
+        {/if}
+    </li>
     {/foreach}
 </ul>
 <script>
     var apiBaseUrl = '{$base_url}/api/';
     var swiper = new Swiper('.swiper-container', {
-        pagination: '.swiper-pagination',
         autoplay: 3000,
         loop: true
     });

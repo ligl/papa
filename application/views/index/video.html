@@ -5,6 +5,9 @@
 </head>
 <body>
 {include file='public/actionbar.html'}
+<h3  class="video-detail-title">{$video.title}</h3>
+<p class="video-detail-catname">{$video.cat_name}</p>
+
 <div class="video-url">
     <h3 class="play-label">播放链接</h3>
     <a class="play-url" href="{$video.url}">{$video.url}</a>
@@ -26,7 +29,7 @@
     <p class="a"><label>A</label>以先锋影音播放器为例：长按“复制”本页“播放链接”内容，尝试切换至“先锋影音app”，进入“菜单”，点击“打开网址”长按输入框“粘贴”本页播放链接前往播放，可能加载会比较慢，请耐心等待。
     </p>
 </div>
-<a href="/" class="next-btn">换</a>
+<!--<a href="/" class="next-btn">换</a>-->
 <script>
     $(function () {
 

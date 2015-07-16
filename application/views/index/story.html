@@ -3,19 +3,55 @@
 <head lang="en">
     {include file='public/header.html'}
 </head>
-<body>
+<body class="body-bottom">
 {include file='public/actionbar.html'}
+<h3 class="story-detail-title">{$story.title}</h3>
+<p class="story-detail-catname">{$story.cat_name}</p>
 <div class="story-content" style="display: none">
     {$story.content}
 </div>
-<a href="/" class="next-btn">换</a>
+<a href="javascript:void(0);" class="next-btn">换</a>
+{literal}
 <script>
-    $(function () {
+    function getTorrent() {
+        $.ajax({
+            url: papa.API_BASE_URL + 'rand_story',
+            dataType: 'json'
+        }).
+                fail(function () {
+                    alert("error occured!!!");
+                }).
+                done(function (data) {
+                    if (data.code == 0) {
+                        var torrent = data.torrent;
+                        $('.story-detail-title').html(torrent.title);
+                        $('.story-detail-catname').html(torrent.cat_name);
+                        $('.story-content').hide().html(torrent.content);
+                        handleStoryContent();
+                        $('body').animate({scrollTop:'0px'},500);
+                    } else {
+                        alert('种子获取失败，请重试');
+                    }
+                }).
+                always(function () {
+                    $('.next-btn').removeClass('fa fa-spinner').html('换');
+                });
+    }
+    function handleStoryContent(obj) {
         $('.story-content').find('font').removeAttr('color').removeAttr('style').removeAttr('size');
         $('.story-content').show();
+    }
+    $(function () {
+        handleStoryContent();
+        $('.next-btn').on('click', function () {
+            if (!$(this).hasClass('fa-spinner')) {
+                $(this).html('').addClass('fa fa-spinner');
+                getTorrent();
+            }
+        });
     });
 </script>
-
+{/literal}
 {include file='public/footer.html'}
 </body>
 </html>

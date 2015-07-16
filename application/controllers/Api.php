@@ -52,10 +52,10 @@ class Api extends ApiBase
     {
         switch ($type) {
             case TORRENT_TYPE_VIDEO:
-                $sql = "select * from video where guid=?";
+                $sql = "select * from video";
                 break;
             case TORRENT_TYPE_STORY:
-                $sql = "select * from story where guid=?";
+                $sql = "select * from story";
                 break;
             case TORRENT_TYPE_PICTURE:
                 //TODO waitting
@@ -65,12 +65,31 @@ class Api extends ApiBase
                 echo json_encode(array('code' => 1, 'msg' => 'not found'));
                 exit;
         }
-        $query = $this->db->query($sql, array($guid));
+        if (!empty($guid)) {
+            $sql .= ' where guid=?';
+            $query = $this->db->query($sql, array($guid));
+        } else {
+            $query = $this->db->query($sql);
+        }
+
         if ($query->num_rows() > 0) {
             $torrent = $query->row_array();
         } else {
             //没有符合条件的数据
             $torrent = array();
+        }
+        echo json_encode(array('code' => 0, 'msg' => 'success', 'torrent' => $torrent));
+    }
+
+    public function rand_story()
+    {
+        $sql = 'SELECT t1.* FROM `story` AS t1 JOIN (SELECT ROUND(RAND() * ((SELECT MAX(id) FROM `story` where `status`=0)-(SELECT MIN(id) FROM `story`  where `status`=0))+(SELECT MIN(id) FROM `story`  where `status`=0)) AS id) AS t2 WHERE t1.id >= t2.id ORDER BY t1.id LIMIT 1;';
+        $query = $this->db->query($sql);
+        if ($query->num_rows() > 0) {
+            $torrent = $query->row_array();
+        } else {
+            //没有符合条件的数据
+            $torrent = null;
         }
         echo json_encode(array('code' => 0, 'msg' => 'success', 'torrent' => $torrent));
     }

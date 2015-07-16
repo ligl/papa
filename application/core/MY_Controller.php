@@ -23,19 +23,22 @@ class MY_Controller extends CI_Controller
         }
         $this->ci_smarty->display($html);
     }
+
     function millisecond()
     {
         return ceil(microtime(true) * 1000);
     }
 }
 
-class AdminBase extends MY_Controller{
+class AdminBase extends MY_Controller
+{
     public function __construct()
     {
         parent::__construct();
         $this->load->helper('url');
-        $this->ci_smarty->assign('base_url',base_url());
+        $this->ci_smarty->assign('base_url', base_url());
     }
+
     /**
      * 显示页面
      * @param null $html 模板名称
@@ -49,16 +52,24 @@ class AdminBase extends MY_Controller{
     }
 }
 
-class HomeBase extends MY_Controller{
+class HomeBase extends MY_Controller
+{
     public function __construct()
     {
         parent::__construct();
         $this->load->helper('url');
-        $this->ci_smarty->assign('base_url',base_url());
+        $this->ci_smarty->assign('base_url', base_url());
+        if (ENVIRONMENT == 'development') {
+            $ver = time();
+        } else {
+            $ver = 1;
+        }
+        $this->ci_smarty->assign('ver', $ver);
     }
 }
 
-class ApiBase extends MY_Controller{
+class ApiBase extends MY_Controller
+{
     public function __construct()
     {
         parent::__construct();
