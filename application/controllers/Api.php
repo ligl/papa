@@ -17,13 +17,11 @@ class Api extends ApiBase
      * 随机获取一个种子
      * @param int $type 种子类型
      */
-    public function get_torrent($type = 0)
+    public function dig()
     {
         //随机取类型
         $cat_arr = array(TORRENT_TYPE_STORY, TORRENT_TYPE_VIDEO);
-        if (!in_array($type, $cat_arr)) {
-            $type = $cat_arr[rand(0, count($cat_arr) - 1)];
-        }
+        $type = $cat_arr[rand(0, count($cat_arr) - 1)];
         switch ($type) {
             case TORRENT_TYPE_VIDEO:
                 $torrent = $this->rand_video_torrent();
@@ -101,6 +99,7 @@ class Api extends ApiBase
         if ($query->num_rows() > 0) {
             $row = $query->row_array();
             $torrent['title'] = $row['title'];
+            $torrent['cat_name']=$row['cat_name'];
             $torrent['url'] = base_url() . '/index/story/' . $row['guid'];
             $torrent['torrent_type'] = TORRENT_TYPE_STORY;
         } else {
@@ -118,6 +117,7 @@ class Api extends ApiBase
             $row = $query->row_array();
             $torrent['title'] = $row['title'];
             $torrent['url'] = base_url() . '/index/video/' . $row['guid'];
+            $torrent['cat_name']=$row['cat_name'];
             $torrent['torrent_type'] = TORRENT_TYPE_VIDEO;
         } else {
             //没有符合条件的数据

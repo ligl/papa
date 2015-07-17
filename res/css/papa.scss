@@ -103,6 +103,22 @@ a.next-btn {
   font-size: 1.2rem;
 }
 
+a.dig-btn {
+  display: block;
+  text-decoration: none;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  background: $primaryColor;
+  color: #ffffff;
+  border-radius: 50%;
+  overflow: hidden;
+  margin:20px auto;
+  text-align: center;
+  z-index: 999999;
+  font-size: 1.2rem;
+}
+
 .swiper-slide {
   background: #f5f5f5;
   /* Center slide text vertically */
@@ -220,5 +236,45 @@ a.next-btn {
   }
 }
 /*** main res list end***/
+
+/*** dig res list***/
+.dig-container {
+
+}
+.dig-container>.dig-item:first-child{
+  border-top:solid 3px $primaryColor;
+}
+
+.dig-container>.dig-item:last-child{
+
+}
+
+.dig-item {
+
+}
+.dig-item>a{
+  display: block;
+  padding: 8px;
+  border: solid 1px #c9c9c9;
+  border-radius: 5px;
+  margin: 5px;
+  background: #ffffff;
+}
+
+.dig-item {
+  .dig-item-title {
+    line-height: 1.2rem;
+  }
+  .dig-item-catname {
+    font-size: 0.8rem;
+    color: #999999;
+    padding-top: 3px;
+  }
+  .dig-item-title>.fa-video-camera,.dig-item-title>.fa-file-text-o{
+    color:$primaryColor;
+  }
+}
+/*** dig res list end***/
+
 @import "story.scss";
 @import "video.scss";
