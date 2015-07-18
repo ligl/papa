@@ -81,7 +81,7 @@ class Api extends ApiBase
 
     public function rand_story()
     {
-        $sql = 'SELECT t1.* FROM `story` AS t1 JOIN (SELECT ROUND(RAND() * ((SELECT MAX(id) FROM `story` where `status`=0)-(SELECT MIN(id) FROM `story`  where `status`=0))+(SELECT MIN(id) FROM `story`  where `status`=0)) AS id) AS t2 WHERE t1.id >= t2.id ORDER BY t1.weight desc LIMIT 1;';
+        $sql = 'SELECT t1.* FROM `story` AS t1 JOIN (SELECT ROUND(RAND() * ((SELECT MAX(id) FROM `story` where `status`=0)-(SELECT MIN(id) FROM `story`  where `status`=0))+(SELECT MIN(id) FROM `story`  where `status`=0)) AS id) AS t2 WHERE t1.id >= t2.id ORDER BY t1.id LIMIT 1;';
         $query = $this->db->query($sql);
         if ($query->num_rows() > 0) {
             $torrent = $query->row_array();
@@ -94,7 +94,7 @@ class Api extends ApiBase
 
     private function rand_story_torrent()
     {
-        $sql = 'SELECT t1.* FROM `story` AS t1 JOIN (SELECT ROUND(RAND() * ((SELECT MAX(id) FROM `story` where `status`=0)-(SELECT MIN(id) FROM `story`  where `status`=0))+(SELECT MIN(id) FROM `story`  where `status`=0)) AS id) AS t2 WHERE t1.id >= t2.id ORDER BY t1.weight desc LIMIT 1;';
+        $sql = 'SELECT t1.* FROM `story` AS t1 JOIN (SELECT ROUND(RAND() * ((SELECT MAX(id) FROM `story` where `status`=0)-(SELECT MIN(id) FROM `story`  where `status`=0))+(SELECT MIN(id) FROM `story`  where `status`=0)) AS id) AS t2 WHERE t1.id >= t2.id ORDER BY t1.id LIMIT 1;';
         $query = $this->db->query($sql);
         if ($query->num_rows() > 0) {
             $row = $query->row_array();
@@ -111,7 +111,7 @@ class Api extends ApiBase
 
     private function rand_video_torrent()
     {
-        $sql = 'SELECT t1.* FROM `video` AS t1 JOIN (SELECT ROUND(RAND() * ((SELECT MAX(id) FROM `video` where `status`=0)-(SELECT MIN(id) FROM `video`  where `status`=0))+(SELECT MIN(id) FROM `video`  where `status`=0)) AS id) AS t2 WHERE t1.id >= t2.id ORDER BY t1.weight desc LIMIT 1;';
+        $sql = 'SELECT t1.* FROM `video` AS t1 JOIN (SELECT ROUND(RAND() * ((SELECT MAX(id) FROM `video` where `status`=0)-(SELECT MIN(id) FROM `video`  where `status`=0))+(SELECT MIN(id) FROM `video`  where `status`=0)) AS id) AS t2 WHERE t1.id >= t2.id ORDER BY t1.id LIMIT 1;';
         $query = $this->db->query($sql);
         if ($query->num_rows() > 0) {
             $row = $query->row_array();
