@@ -62,7 +62,7 @@ class HomeBase extends MY_Controller
         if (ENVIRONMENT == 'development') {
             $ver = time();
         } else {
-            $ver = 1;
+            $ver = 2;
         }
         $this->ci_smarty->assign('ver', $ver);
     }
