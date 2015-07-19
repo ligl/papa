@@ -276,5 +276,45 @@ a.dig-btn {
 }
 /*** dig res list end***/
 
+/*** main top res list***/
+.top-container {
+
+}
+.top-container>.top-item:first-child{
+  border-top:solid 1px #eeeeee;
+}
+
+.top-item {
+  border-bottom: solid 1px #eeeeee;
+}
+.top-item>a{
+  display: block;
+  padding: 8px;
+  position: relative;
+}
+
+.top-item {
+  .top-item-title {
+    line-height: 1.2rem;
+  }
+  .top-item-catname {
+    font-size: 0.8rem;
+    color: #999999;
+    padding-top: 3px;
+  }
+  .top-item-title>.fa-video-camera{
+    color:$majorColor;
+  }
+  .res-item-icon{
+    position: absolute;
+    right:10px;
+    top:50%;
+    margin-top:-5px;
+    color:$primaryColor;
+  }
+}
+/*** main res list end***/
+
+
 @import "story.scss";
 @import "video.scss";

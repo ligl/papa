@@ -16,6 +16,28 @@
     <!--<div class="swiper-pagination"></div>-->
 </div>
 
+<ul class="top-container">
+    {foreach $topList as $res }
+    <li class="top-item">
+        {if $res.p_type==1}
+        <a href="{$base_url}/index/video/{$res.guid}">
+            <h3 class="top-item-title"><i class="fa fa-video-camera"></i> {$res.title}</h3>
+
+            <p class="res-item-catname">{$res.cat_name}</p>
+            <p class="res-item-icon"><i class="fa fa-heartbeat"></i></p>
+        </a>
+        {else}
+        <a href="{$base_url}/index/story/{$res.guid}">
+            <h3 class="top-item-title"><i class="fa fa-file-text-o"></i> {$res.title}</h3>
+
+            <p class="top-item-catname">{$res.cat_name}</p>
+            <p class="res-item-icon"><i class="fa fa-heartbeat"></i></p>
+        </a>
+        {/if}
+    </li>
+    {/foreach}
+</ul>
+
 <ul class="res-container">
     {foreach $resList as $res }
     <li class="res-item">

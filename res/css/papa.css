@@ -219,6 +219,34 @@ a.dig-btn {
   color: #CC0033; }
 
 /*** dig res list end***/
+/*** main top res list***/
+.top-container > .top-item:first-child {
+  border-top: solid 1px #eeeeee; }
+
+.top-item {
+  border-bottom: solid 1px #eeeeee; }
+
+.top-item > a {
+  display: block;
+  padding: 8px;
+  position: relative; }
+
+.top-item .top-item-title {
+  line-height: 1.2rem; }
+.top-item .top-item-catname {
+  font-size: 0.8rem;
+  color: #999999;
+  padding-top: 3px; }
+.top-item .top-item-title > .fa-video-camera {
+  color: #666666; }
+.top-item .res-item-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  margin-top: -5px;
+  color: #CC0033; }
+
+/*** main res list end***/
 .story-detail-title {
   margin: 8px;
   line-height: 1.5rem;
