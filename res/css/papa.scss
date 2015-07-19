@@ -284,6 +284,10 @@ a.dig-btn {
   border-top:solid 1px #eeeeee;
 }
 
+.top-container>.top-item:last-child{
+  border-bottom:none;
+}
+
 .top-item {
   border-bottom: solid 1px #eeeeee;
 }

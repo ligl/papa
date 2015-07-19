@@ -223,6 +223,9 @@ a.dig-btn {
 .top-container > .top-item:first-child {
   border-top: solid 1px #eeeeee; }
 
+.top-container > .top-item:last-child {
+  border-bottom: none; }
+
 .top-item {
   border-bottom: solid 1px #eeeeee; }
 
