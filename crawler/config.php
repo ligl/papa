@@ -13,6 +13,6 @@ $_CONFIG = array(
         'encoding'=>'utf8'
         ),
     'log'=>array(
-        'path'=>'D:/wamp/www/papa/logs/'
+        'path'=>'/Users/amose/www/papa/crawler/logs/'
     )
 );

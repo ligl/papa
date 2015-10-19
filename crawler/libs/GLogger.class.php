@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('PRC');//中国标准时间
 
 class GLogger
 {
@@ -30,7 +31,7 @@ class GLogger
         $n++;
         $file = fopen($filename, 'r');
         fseek($file, $n * 1024 * -1, SEEK_END);
-       //fgets($file);
+        //fgets($file);
         $lines = array();
         while ($line = fgets($file)) {
             $lines[] = trim($line);
@@ -45,7 +46,7 @@ class GLogger
         global $_CONFIG;
         $path = $_CONFIG['log']['path'];
         if (!$path) {
-            $path = $_SERVER['DOCUMENT_ROOT'].'logs/';
+            $path = $_SERVER['DOCUMENT_ROOT'] . 'logs/';
         }
 
         $file = $path . GLogger::LOGFILE;
@@ -85,7 +86,7 @@ class GLogger
         global $_CONFIG;
         $path = $_CONFIG['log']['path'];
         if (!$path) {
-            $path = $_SERVER['DOCUMENT_ROOT'].'logs/';
+            $path = $_SERVER['DOCUMENT_ROOT'] . 'logs/';
         }
         if ($priority == GLogger::OFF) {
             return;
@@ -117,7 +118,7 @@ class GLogger
         global $_CONFIG;
         $path = $_CONFIG['log']['path'];
         if (!$path) {
-            $path = $_SERVER['DOCUMENT_ROOT'].'logs/';
+            $path = $_SERVER['DOCUMENT_ROOT'] . 'logs/';
         }
 
         $priority = GLogger::INFO;
@@ -188,7 +189,7 @@ class GLogger
         //logger(self::$MessageQueue);
     }
 
-    static private  function getTimeLine($level)
+    static private function getTimeLine($level)
     {
         $time = date(self::$DateFormat);
 
