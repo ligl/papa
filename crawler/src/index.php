@@ -30,6 +30,9 @@ switch($m){
         //
         require_once('picture.php');
         break;
+    case 'trans':
+        require_once('trans.php');
+        break;
     default:
         die('access invalid');
         break;
