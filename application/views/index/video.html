@@ -2,78 +2,11 @@
 <html>
 <head lang="en">
     {include file='public/header.html'}
-    <style>
-        .pics {
-            width: 100%;
-            -webkit-filter: blur(1px);
-        }
-
-        .poster {
-            width: 100%;
-        }
-
-        .video-title {
-            padding: 10px 5px;
-            color: #ffffff;
-            position: fixed;
-            bottom: 80px;
-            left: 0;
-            right: 0;
-            word-break: break-all;
-            word-wrap: break-word;
-            background: rgba(33, 33, 33, 0.2);
-        }
-
-        a.choice-btn-wrapper {
-            position: fixed;
-            bottom: 10px;
-            left: 10px;
-            width: 50px;
-            height: 50px;
-            line-height: 50px;
-            border: solid 1px #ee162d;
-            text-align: center;
-            border-radius: 50%;
-            background: #9B410E;
-            color: #ffffff;
-            font-family: Microsoft YaHei, 宋体;
-        }
-
-        a.download-btn {
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
-            width: 50px;
-            height: 50px;
-            line-height: 50px;
-            border: solid 1px #ee162d;
-            text-align: center;
-            border-radius: 50%;
-            background: #9B410E;
-            color: #ffffff;
-            font-family: Microsoft YaHei, 宋体;
-        }
-
-        .ppkey-wrapper {
-
-        }
-
-        .ppkey-panel {
-            position: fixed;
-            left: 0;
-            right: 0;
-            background: #000000;
-            color: #fff;
-            padding: 10px;
-            bottom: 0;
-            display: none;
-        }
-    </style>
 </head>
 <body>
 <img src="{$video.poster}" class="poster"/>
 {foreach $video.pics as $pic }
-<img src="{$pic}" class="pics pic-filter"/>
+<img src="{$pic}" class="pics pic-filter scale"/>
 {/foreach}
 <p class="video-title">
     {$video.title}
@@ -87,29 +20,43 @@
 </a>
 
 <div class="ppkey-panel">
+    <a class="ppkey-panel-close-btn" href="javascript:void(0)">X</a>
+
     <div class="ppkey-wrapper">
         <input placeholder="请输入ppkey" class="ppkey-code"/>
         <a href="javascript:void(0);" class="ppkey-done" data-guid="{$video.guid}">确认</a>
     </div>
-    <p>ppkey是什么？</p>
+    <div class="video-tips">
+        <p class="q"><label>Q</label>ppkey是什么？</p>
 
-    <p>ppkey是wepapa.club用来下载视频的专用码</p>
+        <p class="a"><label>A</label>ppkey是wepapa.club用来下载视频的专用码</p>
 
-    <p>ppkey使用次数</p>
+        <p class="q"><label>Q</label>ppkey使用次数</p>
 
-    <p>每个ppkey可以下载3部视频</p>
+        <p class="a"><label>A</label>每个ppkey可以下载3部视频</p>
 
-    <p>如何获取ppkey</p>
+        <p class="q"><label>Q</label>如何获取ppkey</p>
 
-    <p>ppkey是系统分发的，如果需要请联系xxx@xx.com</p>
-
+        <p class="a"><label>A</label>ppkey是系统分发的，如果需要请联系xxx@xx.com</p>
+    </div>
 </div>
 <div>
 
 </div>
 <script>
     $(function () {
+        $('.download-btn').click(function () {
+            $('.ppkey-panel').addClass('animated slideInUp').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                $(this).removeClass('animated slideInUp');
+            }).show();
+        });
 
+        $('.ppkey-panel-close-btn').click(function () {
+            $('.ppkey-panel').addClass('animated slideOutDown').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                $(this).hide();
+                $(this).removeClass('animated slideOutDown');
+            });
+        })
     });
 </script>
 
