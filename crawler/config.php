@@ -5,14 +5,14 @@
  * Time: 14:21
  */
 $_CONFIG = array(
-    'db'=>array(
+    'db' => array(
         'db_user' => 'root',
-        'db_password' => 'papa@403',
+        'db_password' => '123456',
         'db_name' => 'papa',
-        'db_host' => '104.236.239.73',
-        'encoding'=>'utf8'
-        ),
-    'log'=>array(
-        'path'=>'/Users/amose/www/papa/crawler/logs/'
+        'db_host' => 'localhost',
+        'encoding' => 'utf8'
+    ),
+    'log' => array(
+        'path' => '/Users/amose/www/papa/crawler/logs/'
     )
 );

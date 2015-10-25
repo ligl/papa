@@ -7,6 +7,7 @@
 if (!defined('IN_PAPA')) {
     die('Hacking attempt');
 }
+die('不能访问');
 
 set_time_limit(0);//永不过期
 //error_reporting(0);

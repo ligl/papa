@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {include file='public/header.html'}
+    <!--<meta name="browsermode" content="application"/>-->
+</head>
+<body>
+<!--http://tool.c7sky.com/webcolor/-->
+{include file='public/actionbar.html'}
+<div class="swiper-container main-banner">
+    <div class="swiper-wrapper">
+        {foreach $ads as $ad }
+        <div class="swiper-slide">{$ad.content}</div>
+        {/foreach}
+    </div>
+    <!--<div class="swiper-pagination"></div>-->
+</div>
+
+<ul class="top-container">
+    {foreach $topList as $res }
+    <li class="top-item">
+        {if $res.p_type==1}
+        <a href="{$base_url}/index/video/{$res.guid}">
+            <h3 class="top-item-title"><i class="fa fa-video-camera"></i> {$res.title}</h3>
+
+            <p class="top-item-catname">{$res.cat_name}</p>
+            <p class="top-item-icon"><i class="fa fa-heartbeat"></i></p>
+        </a>
+        {else}
+        <a href="{$base_url}/index/story/{$res.guid}">
+            <h3 class="top-item-title"><i class="fa fa-file-text-o"></i> {$res.title}</h3>
+
+            <p class="top-item-catname">{$res.cat_name}</p>
+            <p class="top-item-icon"><i class="fa fa-heartbeat"></i></p>
+        </a>
+        {/if}
+    </li>
+    {/foreach}
+</ul>
+
+<ul class="res-container">
+    {foreach $resList as $res }
+    <li class="res-item">
+        {if $res.p_type==1}
+        <a href="{$base_url}/index/video/{$res.guid}">
+            <h3 class="res-item-title"><i class="fa fa-video-camera"></i> {$res.title}</h3>
+
+            <p class="res-item-catname">{$res.cat_name}</p>
+        </a>
+        {else}
+        <a href="{$base_url}/index/story/{$res.guid}">
+            <h3 class="res-item-title"><i class="fa fa-file-text-o"></i> {$res.title}</h3>
+
+            <p class="res-item-catname">{$res.cat_name}</p>
+        </a>
+        {/if}
+    </li>
+    {/foreach}
+</ul>
+<div class="dig-container"></div>
+<a href="javascript:void(0);" class="dig-btn">挖</a>
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        autoplay: 3000,
+        loop: true
+    });
+    function getTorrent() {
+        $.ajax({
+            url: papa.API_BASE_URL + 'dig',
+            dataType: 'json'
+        }).
+                fail(function () {
+                    alert("error occured!!!");
+                }).
+                done(function (data) {
+                    if (data.code == 0) {
+                        $('#dig-item-tpl').tmpl(data.torrent).appendTo('.dig-container').addClass('animated bounce').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+                            $(this).remove('animated bounce');
+                        });
+                    } else {
+                        alert('种子获取失败，请重试');
+                    }
+                }).
+                always(function () {
+                    $('.dig-btn').removeClass('fa fa-reddit').html('挖');
+                });
+    }
+    $(function () {
+        $('.dig-btn').on('click', function () {
+            if (!$(this).hasClass('fa-reddit')) {
+                $(this).html('').addClass('fa fa-reddit');
+                getTorrent();
+            }
+        });
+    });
+</script>
+{include file='public/footer.html'}
+</body>
+{literal}
+<script type="text/template" id="dig-item-tpl">
+    <div class="dig-item">
+        {{if torrent_type==1}}
+        <a href="${url}">
+            <h3 class="dig-item-title"><i class="fa fa-video-camera"></i> ${title}</h3>
+
+            <p class="dig-item-catname">${cat_name}</p>
+        </a>
+        {{else}}
+        <a href="${url}">
+            <h3 class="dig-item-title"><i class="fa fa-file-text-o"></i> ${title}</h3>
+
+            <p class="dig-item-catname">${cat_name}</p>
+        </a>
+        {{/if}}
+    </div>
+</script>
+{/literal}
+</html>

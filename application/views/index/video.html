@@ -2,34 +2,111 @@
 <html>
 <head lang="en">
     {include file='public/header.html'}
+    <style>
+        .pics {
+            width: 100%;
+            -webkit-filter: blur(1px);
+        }
+
+        .poster {
+            width: 100%;
+        }
+
+        .video-title {
+            padding: 10px 5px;
+            color: #ffffff;
+            position: fixed;
+            bottom: 80px;
+            left: 0;
+            right: 0;
+            word-break: break-all;
+            word-wrap: break-word;
+            background: rgba(33, 33, 33, 0.2);
+        }
+
+        a.choice-btn-wrapper {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            border: solid 1px #ee162d;
+            text-align: center;
+            border-radius: 50%;
+            background: #9B410E;
+            color: #ffffff;
+            font-family: Microsoft YaHei, 宋体;
+        }
+
+        a.download-btn {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            border: solid 1px #ee162d;
+            text-align: center;
+            border-radius: 50%;
+            background: #9B410E;
+            color: #ffffff;
+            font-family: Microsoft YaHei, 宋体;
+        }
+
+        .ppkey-wrapper {
+
+        }
+
+        .ppkey-panel {
+            position: fixed;
+            left: 0;
+            right: 0;
+            background: #000000;
+            color: #fff;
+            padding: 10px;
+            bottom: 0;
+            display: none;
+        }
+    </style>
 </head>
 <body>
-{include file='public/actionbar.html'}
-<h3  class="video-detail-title">{$video.title}</h3>
-<p class="video-detail-catname">{$video.cat_name}</p>
+<img src="{$video.poster}" class="poster"/>
+{foreach $video.pics as $pic }
+<img src="{$pic}" class="pics pic-filter"/>
+{/foreach}
+<p class="video-title">
+    {$video.title}
+</p>
+<a class="choice-btn-wrapper" href="{$choice_url}">
+    换
+</a>
 
-<div class="video-url">
-    <h3 class="play-label">播放链接</h3>
-    <a class="play-url" href="{$video.url}">{$video.url}</a>
+<a class="download-btn" href="javascript:void(0);">
+    下载
+</a>
+
+<div class="ppkey-panel">
+    <div class="ppkey-wrapper">
+        <input placeholder="请输入ppkey" class="ppkey-code"/>
+        <a href="javascript:void(0);" class="ppkey-done" data-guid="{$video.guid}">确认</a>
+    </div>
+    <p>ppkey是什么？</p>
+
+    <p>ppkey是wepapa.club用来下载视频的专用码</p>
+
+    <p>ppkey使用次数</p>
+
+    <p>每个ppkey可以下载3部视频</p>
+
+    <p>如何获取ppkey</p>
+
+    <p>ppkey是系统分发的，如果需要请联系xxx@xx.com</p>
+
 </div>
+<div>
 
-<div class="video-tips">
-    <p class="suggest">如果播放链接无法使用，请尝试复制至对应播放器打开</p>
-
-    <p class="qa-title">常见问题</p>
-
-    <p class="q"><label>Q</label>如果无法播放怎么办？</p>
-
-    <p class="a">
-        <label>A</label>请首先检查手机是否安装有对应的第三方视频播放器，播放链接中：“xfplay://”开头，请安装先锋影音播放器；“jjhd://”开头，请安装吉吉影音播放器；“qvod://”开头，请安装快播播放器。
-    </p>
-
-    <p class="q"><label>Q</label>如果已确认安装有对应播放器，如何播放？</p>
-
-    <p class="a"><label>A</label>以先锋影音播放器为例：长按“复制”本页“播放链接”内容，尝试切换至“先锋影音app”，进入“菜单”，点击“打开网址”长按输入框“粘贴”本页播放链接前往播放，可能加载会比较慢，请耐心等待。
-    </p>
 </div>
-<!--<a href="/" class="next-btn">换</a>-->
 <script>
     $(function () {
 

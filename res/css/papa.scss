@@ -3,12 +3,11 @@
 $primaryColor: #CC0033;
 $pagePadding: 8px;
 $headerHeight: 48px;
-$majorColor:#666666;
-$minorColor:#999999;
+$majorColor: #666666;
+$minorColor: #999999;
 
 html, body {
   font-size: 14px;
-  background: #ffffff;
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
 }
 
@@ -16,11 +15,13 @@ a, a:hover, a:link, a:active {
   text-decoration: none;
   color: #333333;
 }
-.body-bottom:after{
-  content:'';
+
+.body-bottom:after {
+  content: '';
   display: block;
   height: 50px;
 }
+
 .page {
   width: 100%;
   height: 100%;
@@ -79,18 +80,20 @@ a, a:hover, a:link, a:active {
   display: -webkit-box;
   -webkit-box-flex: 1;
 }
-.swiper-container{
-  .swiper-pagination{
+
+.swiper-container {
+  .swiper-pagination {
     text-align: right;
   }
 }
+
 a.next-btn {
   display: block;
   text-decoration: none;
   width: 40px;
   height: 40px;
   line-height: 40px;
-  background: rgba(0,0,0,0.2);
+  background: rgba(0, 0, 0, 0.2);
   color: #ffffff;
   border-radius: 50%;
   overflow: hidden;
@@ -113,7 +116,7 @@ a.dig-btn {
   color: #ffffff;
   border-radius: 50%;
   overflow: hidden;
-  margin:20px auto;
+  margin: 20px auto;
   text-align: center;
   z-index: 999999;
   font-size: 1.2rem;
@@ -210,14 +213,16 @@ a.dig-btn {
 .res-container {
 
 }
-.res-container>.res-item:first-child{
-  border-top:solid 1px #eeeeee;
+
+.res-container > .res-item:first-child {
+  border-top: solid 1px #eeeeee;
 }
 
 .res-item {
   border-bottom: solid 1px #eeeeee;
 }
-.res-item>a{
+
+.res-item > a {
   display: block;
   padding: 8px;
 }
@@ -231,28 +236,31 @@ a.dig-btn {
     color: #999999;
     padding-top: 3px;
   }
-  .res-item-title>.fa-video-camera{
-    color:$majorColor;
+  .res-item-title > .fa-video-camera {
+    color: $majorColor;
   }
 }
+
 /*** main res list end***/
 
 /*** dig res list***/
 .dig-container {
 
 }
-.dig-container>.dig-item:first-child{
-  border-top:solid 3px $primaryColor;
+
+.dig-container > .dig-item:first-child {
+  border-top: solid 3px $primaryColor;
 }
 
-.dig-container>.dig-item:last-child{
+.dig-container > .dig-item:last-child {
 
 }
 
 .dig-item {
 
 }
-.dig-item>a{
+
+.dig-item > a {
   display: block;
   padding: 8px;
   border: solid 1px #c9c9c9;
@@ -270,28 +278,31 @@ a.dig-btn {
     color: #999999;
     padding-top: 3px;
   }
-  .dig-item-title>.fa-video-camera,.dig-item-title>.fa-file-text-o{
-    color:$primaryColor;
+  .dig-item-title > .fa-video-camera, .dig-item-title > .fa-file-text-o {
+    color: $primaryColor;
   }
 }
+
 /*** dig res list end***/
 
 /*** main top res list***/
 .top-container {
 
 }
-.top-container>.top-item:first-child{
-  border-top:solid 1px #eeeeee;
+
+.top-container > .top-item:first-child {
+  border-top: solid 1px #eeeeee;
 }
 
-.top-container>.top-item:last-child{
-  border-bottom:none;
+.top-container > .top-item:last-child {
+  border-bottom: none;
 }
 
 .top-item {
   border-bottom: solid 1px #eeeeee;
 }
-.top-item>a{
+
+.top-item > a {
   display: block;
   padding: 8px;
   position: relative;
@@ -306,19 +317,19 @@ a.dig-btn {
     color: #999999;
     padding-top: 3px;
   }
-  .top-item-title>.fa-video-camera{
-    color:$majorColor;
+  .top-item-title > .fa-video-camera {
+    color: $majorColor;
   }
-  .top-item-icon{
+  .top-item-icon {
     position: absolute;
-    right:10px;
-    top:50%;
-    margin-top:-5px;
-    color:$primaryColor;
+    right: 10px;
+    top: 50%;
+    margin-top: -5px;
+    color: $primaryColor;
   }
 }
-/*** main res list end***/
 
+/*** main res list end***/
 
 @import "story.scss";
 @import "video.scss";

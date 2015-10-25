@@ -14,37 +14,41 @@ set_time_limit(0);//永不过期
 //https://developers.pinterest.com/tools/api-explorer/
 $db = new ezSQL_mysql($_CONFIG['db']['db_user'], $_CONFIG['db']['db_password'], $_CONFIG['db']['db_name'], $_CONFIG['db']['db_host'], $_CONFIG['db']['encoding']);
 
-$movie_id = $db->get_var("select id from `video` where poster='' limit 1");//影片编号
+$movie_id = $db->get_var("select id from `video` where poster='' and weight>0 limit 1");//影片编号
 echo '<h2>start trans [' . date('Y-m-d H:i:s') . ']</h2>';
 while ($v_data = $db->get_results("select * from video where id>$movie_id and weight>0 limit 50")) {
     foreach ($v_data as $item) {
-        $movie_id = $item->id;
-        //poster
-        $org_poster = $item->org_poster;
-        if (empty($org_poster)) {
-            continue;
-        }
-        $pic_url = post_pinterest($movie_id, $org_poster);
-        if ($pic_url) {
-            update_poster($movie_id, $pic_url);
-        }
-        //pics
-        $org_pics = $item->org_pics;
-        if (empty($org_pics)) {
-            continue;
-        }
-        $org_pics = explode(',', $org_pics);
-        $pics = array();
-        foreach ($org_pics as $pic) {
-            $pic_url = post_pinterest($movie_id, $pic);
-            if ($pic_url) {
-                $pics[] = $pic_url;
+        try {
+            $movie_id = $item->id;
+            //poster
+            $org_poster = $item->org_poster;
+            if (empty($org_poster)) {
+                continue;
             }
+            $pic_url = post_pinterest($movie_id, $org_poster);
+            if ($pic_url) {
+                update_poster($movie_id, $pic_url);
+            }
+            //pics
+            $org_pics = $item->org_pics;
+            if (empty($org_pics)) {
+                continue;
+            }
+            $org_pics = explode(',', $org_pics);
+            $pics = array();
+            foreach ($org_pics as $pic) {
+                $pic_url = post_pinterest($movie_id, $pic);
+                if ($pic_url) {
+                    $pics[] = $pic_url;
+                }
+            }
+            if ($pics) {
+                update_pics($movie_id, $pics);
+            }
+            echo '<p>' . $movie_id . '-' . $item->title . '</p>';
+        } catch (Exception $e) {
+            GLogger::e('[gtb8]获取图片失败', $e);
         }
-        if ($pics) {
-            update_pics($movie_id, $pics);
-        }
-        echo '<p>' . $movie_id . '-' . $item->title . '</p>';
     }
 }
 echo '<h2>end trans [' . date('Y-m-d H:i:s') . ']</h2>';
@@ -75,7 +79,8 @@ function update_pics($id, $pics)
 
 function post_pinterest($id, $pic)
 {
-    $token = 'AeCbvD_Z3IaRU2kv_qFTgZU4ZrghFA-IBMaQtfBCk5BGFQAQBgAAAAA';
+    sleep(1);
+    $token = 'AUqNziNVZOo2r01hkpg3pKshk2AQFA_P5ZWk7gpCk5BGFQAQBgAAAAA';
     $url = "https://api.pinterest.com/v1/pins/?access_token=$token";
     $params['board'] = 'lepapa3565/pics';
 
