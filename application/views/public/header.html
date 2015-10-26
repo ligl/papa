@@ -13,6 +13,14 @@
 <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
 <script>
     papa = {
-        API_BASE_URL: '{$base_url}/api/'
+        API_BASE_URL: '{$base_url}/api/',
+        isWeiXin: function () {
+            var ua = window.navigator.userAgent.toLowerCase();
+            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 </script>

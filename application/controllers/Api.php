@@ -103,4 +103,42 @@ class Api extends ApiBase
         }
         return $torrent;
     }
+
+    /*
+     * 获取下载的视频地址
+     */
+    public function trans($guid, $ppkey)
+    {
+        $es_guid = $this->db->escape_str($guid);
+        $es_ppkey = $this->db->escape_str($ppkey);
+
+        //验证种子是否存在
+        $sql = "SELECT * FROM `video` where weight>0 and guid='$es_guid'";
+        $query = $this->db->query($sql);
+        $video = $query->row_array();
+        if (empty($video)) {
+            echo json_encode(array('code' => 1, 'msg' => 'video not found'));
+            exit;
+        }
+        //ppkey是否存在
+        $sql = "select * from ppkey where code='$es_ppkey'";
+        $query = $this->db->query($sql);
+        $ppkey_obj = $query->row_array();
+        if (empty($ppkey_obj)) {
+            echo json_encode(array('code' => 2, 'msg' => 'ppkey not found'));
+            exit;
+        }
+        $sql = "update ppkey set `limit`=`limit`-1 where `code`='$es_ppkey' and `limit`>0";
+        $query = $this->db->query($sql);
+        if ($this->db->affected_rows() == 0) {
+            //不可使用
+            echo json_encode(array('code' => 3, 'msg' => 'ppkey invalid'));
+            exit;
+        } else {
+            //可以使用,插入历史
+            $this->db->insert("ppkey_history", array('ppkey_code' => $es_ppkey, 'res_guid' => $es_guid, 'use_time' => $this->millisecond()));
+        }
+        $rlt_data = array('video_url' => $video['url'], 'type' => $video['type'], 'ppkey_limit' => $ppkey_obj['limit'] - 1);
+        echo json_encode(array('code' => 0, 'msg' => 'success', 'data' => $rlt_data));
+    }
 }

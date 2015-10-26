@@ -4,6 +4,7 @@
     {include file='public/header.html'}
 </head>
 <body>
+
 <img src="{$video.poster}" class="poster"/>
 {foreach $video.pics as $pic }
 <img src="{$pic}" class="pics pic-filter scale"/>
@@ -37,15 +38,29 @@
 
         <p class="q"><label>Q</label>如何获取ppkey</p>
 
-        <p class="a"><label>A</label>ppkey是系统分发的，如果需要请联系xxx@xx.com</p>
+        <p class="a"><label>A</label>ppkey是系统分发的</p>
     </div>
 </div>
-<div>
+<div class="weixin-tips">
+    <p class="arrow-direction">
+        <img src="{$base_url}/res/img/ic_arrow_direction.png"/>
+    </p>
 
+    <p style="margin-bottom: 20px;"><span class="wx-tips-circle">1</span>点击右上角的<img
+            src="https://s-media-cache-ak0.pinimg.com/originals/b1/4d/fd/b14dfd22855185c007fbea64ae9a9059.png"
+            style="width:40px;"/>按钮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+
+    <p><span class="wx-tips-circle">2</span>选择<img
+            src="https://s-media-cache-ak0.pinimg.com/originals/0e/f3/9b/0ef39b3b2d7ccb29cb9ff57485575268.png"
+            style="width:150px;"/></p>
 </div>
 <script>
     $(function () {
         $('.download-btn').click(function () {
+            if (papa.isWeiXin()) {
+                $('.weixin-tips').show();
+                return;
+            }
             $('.ppkey-panel').addClass('animated slideInUp').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
                 $(this).removeClass('animated slideInUp');
             }).show();
@@ -56,6 +71,42 @@
                 $(this).hide();
                 $(this).removeClass('animated slideOutDown');
             });
+        });
+        $('.ppkey-done').click(function () {
+
+            var guid = $.trim($(this).attr('data-guid'));
+            var ppkey = $.trim($('.ppkey-code').val());
+            if (ppkey.length == 0) {
+                $('.ppkey-code').addClass('animated shake').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                    $(this).removeClass('animated shake');
+                });
+                return;
+            }
+            $.ajax({
+                url: papa.API_BASE_URL + 'trans',
+                dataType: 'json',
+                type: 'POST',
+                data: {
+                    guid: guid,
+                    ppkey: ppkey
+                }
+            }).
+                    fail(function () {
+                        alert("error occured!!!");
+                    }).
+                    done(function (data) {
+                        if (data.code == 0) {
+
+                        } else {
+                            alert(data.msg);
+                        }
+                    }).
+                    always(function () {
+                        $('.dig-btn').removeClass('fa fa-reddit').html('挖');
+                    });
+        });
+        $('.weixin-tips').click(function () {
+            $(this).hide();
         })
     });
 </script>

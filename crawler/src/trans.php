@@ -14,7 +14,8 @@ set_time_limit(0);//永不过期
 //https://developers.pinterest.com/tools/api-explorer/
 $db = new ezSQL_mysql($_CONFIG['db']['db_user'], $_CONFIG['db']['db_password'], $_CONFIG['db']['db_name'], $_CONFIG['db']['db_host'], $_CONFIG['db']['encoding']);
 
-$movie_id = $db->get_var("select id from `video` where poster='' and weight>0 limit 1");//影片编号
+$movie_id = $db->get_var("select id from `video` where poster='' and weight=-100 limit 1");//影片编号
+
 echo '<h2>start trans [' . date('Y-m-d H:i:s') . ']</h2>';
 while ($v_data = $db->get_results("select * from video where id>$movie_id and weight>0 limit 50")) {
     foreach ($v_data as $item) {
