@@ -108,7 +108,7 @@ a.download-btn {
   font-family: Microsoft YaHei, 宋体;
 }
 
-.ppkey-panel {
+.ppkey-panel, .down-panel {
   position: fixed;
   left: 0;
   right: 0;
@@ -155,6 +155,20 @@ a.download-btn {
     border-radius: 50%;
     color: #333333;
     text-align: center;
+    font-family: Microsoft YaHei, 宋体;
+  }
+}
+
+.down-panel {
+  a.down-url {
+    display: block;
+    text-align: center;
+    background: #CC0033;
+    color: #ffffff;
+    border-radius: 6px;
+    line-height: 40px;
+    width: 50%;
+    margin: 50px auto;
     font-family: Microsoft YaHei, 宋体;
   }
 }

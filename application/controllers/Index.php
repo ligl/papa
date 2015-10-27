@@ -115,13 +115,36 @@ class Index extends HomeBase
         $this->display();
     }
 
-    public function test()
+    /**
+     * @param $hid ppkey_history id
+     * @param $guid
+     * @param $ppkey
+     */
+    public function down($hid, $guid, $ppkey)
     {
-        $data["title"] = "标题";
-        $data["num"] = "123123";
+        $hid = intval($hid);
+        $guid = $this->db->escape_str(trim($guid));
+        $ppkey = $this->db->escape_str(trim($ppkey));
 
-        $this->assign('data', $data);
-
-        $this->display("test.html");
+        //是否存在
+        $query = $this->db->query("select * from ppkey_history where id=$hid and res_guid='$guid' and ppkey_code='$ppkey'");
+        if ($query->num_rows() > 0) {
+            $ppkey_history = $query->row_array();
+        }
+        if (!isset($ppkey_history)) {
+            redirect(base_url(), 'refresh');
+            exit;
+        }
+        //是否过期
+        if ($this->millisecond() > $ppkey_history['expires']) {
+            redirect(base_url(), 'refresh');
+            exit;
+        }
+        $query = $this->db->query('select * from video where guid=?', array($guid));
+        if ($query->num_rows() > 0) {
+            $video = $query->row_array();
+        }
+        $this->assign('video', $video);
+        $this->display();
     }
 }

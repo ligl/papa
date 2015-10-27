@@ -4,13 +4,12 @@
     {include file='public/header.html'}
 </head>
 <body>
-
-<h3 class="video-detail-title">{$video.title}</h3>
-
+{include file='public/actionbar.html'}
+<h3  class="video-detail-title">{$video.title}</h3>
 <p class="video-detail-catname">{$video.cat_name}</p>
 
 <div class="video-url">
-    <h3 class="play-label">播放链接<span style="font-size:0.7rem;margin-left:5px;color:#999999;">(点击下面链接下载播放)</span></h3>
+    <h3 class="play-label">播放链接</h3>
     <a class="play-url" href="{$video.url}">{$video.url}</a>
 </div>
 

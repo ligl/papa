@@ -12,6 +12,8 @@ class Api extends ApiBase
 
     public function index()
     {
+        echo $this->input->ip_address();
+        exit;
         echo 'api controller';
     }
 
@@ -107,8 +109,10 @@ class Api extends ApiBase
     /*
      * 获取下载的视频地址
      */
-    public function trans($guid, $ppkey)
+    public function trans()
     {
+        $guid = trim($_POST['guid']);
+        $ppkey = trim($_POST['ppkey']);
         $es_guid = $this->db->escape_str($guid);
         $es_ppkey = $this->db->escape_str($ppkey);
 
@@ -134,11 +138,20 @@ class Api extends ApiBase
             //不可使用
             echo json_encode(array('code' => 3, 'msg' => 'ppkey invalid'));
             exit;
-        } else {
-            //可以使用,插入历史
-            $this->db->insert("ppkey_history", array('ppkey_code' => $es_ppkey, 'res_guid' => $es_guid, 'use_time' => $this->millisecond()));
         }
-        $rlt_data = array('video_url' => $video['url'], 'type' => $video['type'], 'ppkey_limit' => $ppkey_obj['limit'] - 1);
+        //可以使用,插入历史
+        $data = array('ppkey_code' => $es_ppkey, 'res_guid' => $es_guid, 'use_time' => $this->millisecond());
+        $data['expires'] = $data['use_time'] + 30 * 60 * 1000;
+        $data['ip'] = $this->input->ip_address();
+        $this->db->insert("ppkey_history", $data);
+        $id = $this->db->insert_id();
+        if (!$id) {
+            echo json_encode(array('code' => 4, 'msg' => 'history insert failed'));
+            exit;
+        }
+
+        $rlt_data = array('down_url' => base_url() . "index/down/$id/$es_guid/$es_ppkey", 'ppkey_limit' => $ppkey_obj['limit'] - 1);
         echo json_encode(array('code' => 0, 'msg' => 'success', 'data' => $rlt_data));
+
     }
 }

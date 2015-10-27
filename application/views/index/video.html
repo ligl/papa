@@ -41,6 +41,9 @@
         <p class="a"><label>A</label>ppkey是系统分发的</p>
     </div>
 </div>
+<div class="down-panel">
+    <a href="javascript:void(0)" class="down-url">下载</a>
+</div>
 <div class="weixin-tips">
     <p class="arrow-direction">
         <img src="{$base_url}/res/img/ic_arrow_direction.png"/>
@@ -92,17 +95,18 @@
                 }
             }).
                     fail(function () {
-                        alert("error occured!!!");
+                        //alert("error occured!!!");
                     }).
                     done(function (data) {
                         if (data.code == 0) {
-
+                            $('.ppkey-panel').hide();
+                            $('.down-panel').show().find('a.down-url').attr('href', data.data.down_url);
                         } else {
                             alert(data.msg);
                         }
                     }).
                     always(function () {
-                        $('.dig-btn').removeClass('fa fa-reddit').html('挖');
+
                     });
         });
         $('.weixin-tips').click(function () {
