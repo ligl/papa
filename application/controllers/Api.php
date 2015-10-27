@@ -157,8 +157,6 @@ class Api extends ApiBase
 
     public function amose($count = 100, $limit = 3)
     {
-        //TODO test
-        $count = 5;
 
         $count = intval($count);
         $limit = intval($limit);
@@ -166,9 +164,6 @@ class Api extends ApiBase
         $ppkey_list = array();//目标ppkey list
         $ex_ppkey_list = array();//本次生成的ppkey在数据库中已存在的列表
         $is_complete = false;
-        $ppkey_list[] = 'bsiq';
-        $ppkey_list[] = 'yxas';
-        $ppkey_list[] = 'vnfh';
         do {
             $ppkey = $this->get_rand_num(4);
             if (!in_array($ppkey, $ppkey_list) && !in_array($ppkey, $ex_ppkey_list)) {
