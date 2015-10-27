@@ -17,7 +17,7 @@ $db = new ezSQL_mysql($_CONFIG['db']['db_user'], $_CONFIG['db']['db_password'], 
 $movie_id = $db->get_var("select id from `video` where poster='' and weight=-100 limit 1");//影片编号
 
 echo '<h2>start trans [' . date('Y-m-d H:i:s') . ']</h2>';
-while ($v_data = $db->get_results("select * from video where id>$movie_id and weight>0 limit 50")) {
+while ($v_data = $db->get_results("select * from video where id>$movie_id and weight=-100 limit 50")) {
     foreach ($v_data as $item) {
         try {
             $movie_id = $item->id;
@@ -115,7 +115,7 @@ function post_pinterest($id, $pic)
             return false;
         }
     } else {
-        GLogger::e('[pinterest]上传失败', $rlt);
+        GLogger::e('[pinterest]上传失败','['.$id.']', $rlt);
         return false;
     }
 }
