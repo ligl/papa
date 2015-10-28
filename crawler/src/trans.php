@@ -15,7 +15,10 @@ set_time_limit(0);//永不过期
 $db = new ezSQL_mysql($_CONFIG['db']['db_user'], $_CONFIG['db']['db_password'], $_CONFIG['db']['db_name'], $_CONFIG['db']['db_host'], $_CONFIG['db']['encoding']);
 
 $movie_id = $db->get_var("select id from `video` where poster='' and weight=-100 limit 1");//影片编号
-
+//TODO man
+if ($movie_id < 600) {
+    $movie_id = 603;
+}
 echo '<h2>start trans [' . date('Y-m-d H:i:s') . ']</h2>';
 while ($v_data = $db->get_results("select * from video where id>$movie_id and weight=-100 limit 50")) {
     foreach ($v_data as $item) {
@@ -81,7 +84,7 @@ function update_pics($id, $pics)
 function post_pinterest($id, $pic)
 {
     sleep(1);
-    $token = 'AUqNziNVZOo2r01hkpg3pKshk2AQFA_P5ZWk7gpCk5BGFQAQBgAAAAA';
+    $token = 'AeKq1_hqLVVzZwuEesAE197x_OShFBE4UlQTYB5Ck5BGFQAQBgAAAAA';
     $url = "https://api.pinterest.com/v1/pins/?access_token=$token";
     $params['board'] = 'lepapa3565/pics';
 
@@ -115,7 +118,7 @@ function post_pinterest($id, $pic)
             return false;
         }
     } else {
-        GLogger::e('[pinterest]上传失败','['.$id.']', $rlt);
+        GLogger::e('[pinterest]上传失败', '[' . $id . ']', $rlt);
         return false;
     }
 }

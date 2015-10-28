@@ -11,7 +11,7 @@ class Index extends HomeBase
 
     public function index()
     {
-        $query = $this->db->query('select * from video where weight>0 and poster!="" limit 50');
+        $query = $this->db->query('select * from video where weight>0 limit 50');
         if ($query->num_rows() > 0) {
             $list = $query->result_array();
         }
