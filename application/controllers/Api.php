@@ -83,7 +83,7 @@ class Api extends ApiBase
         $query = $this->db->query($sql);
         $video = $query->row_array();
         if (empty($video)) {
-            echo json_encode(array('code' => 1, 'msg' => 'video not found'));
+            echo json_encode(array('code' => 1, 'msg' => '视频已无效'));
             exit;
         }
         //ppkey是否存在
@@ -91,14 +91,14 @@ class Api extends ApiBase
         $query = $this->db->query($sql);
         $ppkey_obj = $query->row_array();
         if (empty($ppkey_obj)) {
-            echo json_encode(array('code' => 2, 'msg' => 'ppkey not found'));
+            echo json_encode(array('code' => 2, 'msg' => 'ppkey不正确'));
             exit;
         }
         $sql = "update ppkey set `limit`=`limit`-1 where `code`='$es_ppkey' and `limit`>0";
         $query = $this->db->query($sql);
         if ($this->db->affected_rows() == 0) {
             //不可使用
-            echo json_encode(array('code' => 3, 'msg' => 'ppkey invalid'));
+            echo json_encode(array('code' => 3, 'msg' => 'ppkey次数已用完'));
             exit;
         }
         //可以使用,插入历史

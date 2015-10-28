@@ -3,6 +3,9 @@ html, body {
   font-size: 14px;
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif; }
 
+body {
+  background-image: url(https://s-media-cache-ak0.pinimg.com/originals/1a/7b/f6/1a7bf6a82b2defe266f79e1b8de3e909.jpg); }
+
 a, a:hover, a:link, a:active {
   text-decoration: none;
   color: #333333; }
@@ -283,6 +286,40 @@ a.dig-btn {
   vertical-align: middle; }
 
 /**weixin tips end**/
+.m-list .list-item {
+  border-radius: 6px;
+  position: relative;
+  margin: 15px;
+  display: none; }
+.m-list .list-item img {
+  width: 100%;
+  max-width: 100% !important;
+  border-radius: 6px; }
+.m-list .list-item p {
+  padding: 10px 5px;
+  color: #ffffff;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  word-break: break-all;
+  word-wrap: break-word;
+  background: rgba(33, 33, 33, 0.2);
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px; }
+.m-list .pic-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden; }
+
+.loading {
+  margin: 15px;
+  display: none;
+  text-align: center;
+  color: #666666;
+  font-size: 0.8rem; }
+
 .story-detail-title {
   margin: 8px;
   line-height: 1.5rem;
@@ -377,10 +414,9 @@ a.choice-btn-wrapper {
   width: 50px;
   height: 50px;
   line-height: 50px;
-  border: solid 1px #ee162d;
   text-align: center;
   border-radius: 50%;
-  background: #9B410E;
+  background: #666666;
   color: #ffffff;
   font-family: Microsoft YaHei, 宋体; }
 
@@ -391,10 +427,9 @@ a.download-btn {
   width: 50px;
   height: 50px;
   line-height: 50px;
-  border: solid 1px #ee162d;
   text-align: center;
   border-radius: 50%;
-  background: #9B410E;
+  background: #CC0033;
   color: #ffffff;
   font-family: Microsoft YaHei, 宋体; }
 

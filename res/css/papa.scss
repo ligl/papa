@@ -11,6 +11,10 @@ html, body {
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
 }
 
+body {
+  background-image: url(https://s-media-cache-ak0.pinimg.com/originals/1a/7b/f6/1a7bf6a82b2defe266f79e1b8de3e909.jpg);
+}
+
 a, a:hover, a:link, a:active {
   text-decoration: none;
   color: #333333;
@@ -371,6 +375,52 @@ a.dig-btn {
 }
 
 /**weixin tips end**/
+
+.m-list {
+
+  .list-item {
+    border-radius: 6px;
+    position: relative;
+    margin: 15px;
+    display: none;
+  }
+
+  .list-item img {
+    width: 100%;
+    max-width: 100% !important;
+    border-radius: 6px;
+  }
+
+  .list-item p {
+    padding: 10px 5px;
+    color: #ffffff;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    word-break: break-all;
+    word-wrap: break-word;
+    background: rgba(33, 33, 33, 0.2);
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+  }
+
+  .pic-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+  }
+
+}
+
+.loading {
+  margin: 15px;
+  display: none;
+  text-align: center;
+  color: #666666;
+  font-size: 0.8rem;
+}
 
 @import "story.scss";
 @import "video.scss";

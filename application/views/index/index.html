@@ -3,90 +3,9 @@
 <head>
     {include file='public/header.html'}
     <script src="//cdn.bootcss.com/jquery.imagesloaded/3.1.8/imagesloaded.pkgd.min.js"></script>
-    <style type="text/css">
-        body {
-            background-image: url(https://s-media-cache-ak0.pinimg.com/originals/1a/7b/f6/1a7bf6a82b2defe266f79e1b8de3e909.jpg);
-        }
-
-        .list-item {
-            border-radius: 6px;
-            position: relative;
-            margin: 15px;
-            display: none;
-        }
-
-        .list-item img {
-            width: 100%;
-            max-width: 100% !important;
-            border-radius: 6px;
-        }
-
-        .list-item p {
-            padding: 10px 5px;
-            color: #ffffff;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            word-break: break-all;
-            word-wrap: break-word;
-            background: rgba(33, 33, 33, 0.2);
-            border-bottom-right-radius: 6px;
-            border-bottom-left-radius: 6px;
-        }
-
-        .list {
-            margin: 0 auto;
-        }
-
-        .grayscale {
-            -webkit-filter: grayscale(1);
-        }
-
-        .sepia {
-            -webkit-filter: sepia(1);
-        }
-
-        .saturate {
-            -webkit-filter: saturate(0.5);
-        }
-
-        .invert {
-            -webkit-filter: invert(1);
-        }
-
-        .brightness {
-            -webkit-filter: brightness(.5);
-        }
-
-        .contrast {
-            -webkit-filter: contrast(2);
-        }
-
-        .blur {
-            -webkit-filter: blur(3px);
-        }
-
-        .custom {
-            -webkit-filter: saturate(5) hue-rotate(500deg) grayscale(0.3) sepia(0.7) contrast(1.5) invert(0.2) brightness(.9);
-        }
-
-        .loading {
-            margin: 15px;
-            display: none;
-            text-align: center;
-        }
-
-        .pic-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            overflow: hidden;
-        }
-    </style>
 </head>
 <body>
-<div class="list" id="mlist">
+<div class="m-list" id="mlist">
 
 </div>
 <div class="loading">
@@ -124,28 +43,7 @@
                                     .progress(function (instance, image) {
 
                                         if (image.isLoaded) {
-                                            var filterName = '';
-                                            switch (i++ % 5) {
-                                                case 0:
-                                                    filterName = 'blur';
-                                                    break;
-                                                case 1:
-                                                    filterName = 'brightness';
-                                                    break;
-                                                case 2:
-                                                    filterName = 'custom';
-                                                    break;
-                                                case 3:
-                                                    filterName = 'contrast';
-                                                    break;
-                                                case 4:
-                                                    filterName = 'grayscale';
-                                                    break;
-                                            }
-                                            //$(image.img).addClass(filterName);
                                             $(image.img).parent().show();
-
-                                            //$(image.img).siblings().width(image.img.width);
                                         }
                                     });
 
@@ -155,7 +53,6 @@
                     }).
                     always(function () {
                         $('.loading').hide();
-                        //$('.dig-btn').removeClass('fa fa-reddit').html('挖');
                     });
         }
 
