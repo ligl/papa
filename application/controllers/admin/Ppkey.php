@@ -19,6 +19,21 @@ class Ppkey extends AdminBase
         echo 'welcome ppkey';
     }
 
+    public function get()
+    {
+        $query = $this->db->query('select * from ppkey order by `limit` DESC limit 100');
+        if ($query->num_rows() > 0) {
+            foreach ($query->result_array() as $item) {
+                $data[] = $item['code'];
+            }
+        }
+        if ($data) {
+            echo '<h3>' . implode('<br/>', $data) . '</h3>';
+        } else {
+            echo 'no data';
+        }
+    }
+
     public function build($count = 100, $limit = 3)
     {
 
