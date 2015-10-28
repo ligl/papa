@@ -7,3 +7,5 @@ application/templates_c/*
 !application/templates_c/readme.md
 !.gitignore
 index.php
+crawler/logs/*
+!crawler/logs/readme.md
