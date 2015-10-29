@@ -21,7 +21,7 @@ class Ppkey extends AdminBase
 
     public function get()
     {
-        $query = $this->db->query('select * from ppkey order by `limit` DESC limit 100');
+        $query = $this->db->query('select * from ppkey where agency_id=0 and `limit`>0 order by `limit` asc limit 100');
         if ($query->num_rows() > 0) {
             foreach ($query->result_array() as $item) {
                 $data[] = $item['code'];
