@@ -4,6 +4,8 @@ html, body {
   font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif; }
 
 body {
+  max-width: 800px;
+  margin: 0 auto;
   background-image: url(https://s-media-cache-ak0.pinimg.com/originals/1a/7b/f6/1a7bf6a82b2defe266f79e1b8de3e909.jpg); }
 
 a, a:hover, a:link, a:active {
