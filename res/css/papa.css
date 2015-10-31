@@ -389,6 +389,16 @@ a.dig-btn {
   color: #CC0033;
   font-weight: bold;
   padding-right: 2px; }
+.video-tips .player-cls-wrapper {
+  display: block;
+  margin: 10px 0;
+  font-size: 0.8rem; }
+.video-tips .player-cls {
+  background: #CC0033;
+  color: #ffffff;
+  border-radius: 4px;
+  padding: 5px;
+  margin-left: 10px; }
 
 .pics {
   width: 100%;

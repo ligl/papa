@@ -55,6 +55,18 @@
     font-weight: bold;
     padding-right: 2px;
   }
+  .player-cls-wrapper {
+    display: block;
+    margin: 10px 0;
+    font-size: 0.8rem;
+  }
+  .player-cls {
+    background: $primaryColor;
+    color: #ffffff;
+    border-radius: 4px;
+    padding: 5px;
+    margin-left: 10px;
+  }
 }
 
 .pics {
